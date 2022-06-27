@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "iXsWNP4YqZZb1rV/r5dRyBfs8D/vsGJqL+TY2Ow0N1U=",
+  "Source": "AvoskaIsReal",
+  "BasePath": "_content/AvoskaIsReal",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "AvoskaIsReal\\wwwroot",
+      "Source": "AvoskaIsReal",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\",
+      "BasePath": "_content/AvoskaIsReal",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}
