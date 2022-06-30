@@ -1,0 +1,30 @@
+﻿<main class="page log-in-page background_dark padding-horizontal">
+    <h2 class="title_1">Вход</h2>
+    <form class="form">
+    <div class="form__item">
+        <label class="form__label">Логин</label>
+        <input type="text" value="Имя тестового пользователя" />
+    </div>
+    <div class="form__item">
+        <label class="form__label">Пароль</label>
+        <input type="password" value="Иван Иванович" />
+    </div>
+    <div class="form__item">
+        <label class="form__label">Запомнить вас</label>
+        <input type="checkbox" />
+    </div>
+    <div class="form__item log-in-page__button">
+        <button class="button" type="submit">Войти</button>
+    </div>
+    <div class="form__item">
+        <a class="link" asp-area="" asp-controller="Home"
+        asp-action="Contact">Хотите завести аккаунт?</a>
+    </div>
+    </form>
+</main>
+
+@section Header {
+    @{
+        await Html.RenderPartialAsync("_HeaderVerticalPartial");
+    }
+}

@@ -13,5 +13,15 @@ namespace AvoskaIsReal.Controllers
         {
             return View();
         }
+
+        public IActionResult Articles()
+        {
+            return View();
+        }
+
+        public IActionResult AllAboutAvoska()
+        {
+            return View();
+        }
     }
 }

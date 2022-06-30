@@ -19,9 +19,12 @@
     </div>
     <button class="button main-page__button">Что мы знаем о ней?</button>
 </main>
+@{
+    await Html.RenderPartialAsync("_FinalPagePartial");
+}
 
 @section Header {
     @{
-        await Html.RenderPartialAsync("_HeaderVertical");
+        await Html.RenderPartialAsync("_HeaderVerticalPartial");
     }
 }

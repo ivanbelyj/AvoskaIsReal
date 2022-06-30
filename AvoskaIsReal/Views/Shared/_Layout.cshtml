@@ -12,9 +12,20 @@
         @RenderSection("Header")
     } else
     {
-        
+        <header class="header header_horizontal padding-horizontal nav-panel__button">
+            <div
+            class="burger nav-panel__burger header_horizontal__burger burger_brown-dark"
+            >
+            <div class="burger__line burger__top"></div>
+            <div class="burger__line burger__middle"></div>
+            <div class="burger__line burger__bottom"></div>
+            </div>
+            <div class="logo header__logo header_horizontal__logo brown-dark-color">
+            авоська существует
+            </div>
+        </header>
     }
-    @{ await Html.RenderPartialAsync("_Nav"); }
+    @{ await Html.RenderPartialAsync("_NavPartial"); }
 
     <div>
         @RenderBody()
