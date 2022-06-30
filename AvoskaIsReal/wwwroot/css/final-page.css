@@ -1,0 +1,36 @@
+.final-page {
+  min-height: 100vh;
+  text-align: center;
+  color: var(--brown-dark);
+  background-color: var(--light);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.final-page__title {
+  font-family: "LC Body", sans-serif;
+  font-size: 1.7rem;
+  padding-top: 240px;
+}
+.final-page__title_avoska {
+  font-size: 3.2rem;
+}
+.final-page__phrase2 {
+  font-family: "Sehnsucht Font", sans-serif;
+  font-size: 1.625rem;
+  margin-top: 40px;
+}
+
+.final-page__phrase3 {
+  font-family: "Sehnsucht Font", sans-serif;
+  font-size: 2rem;
+  margin-top: 210px;
+}
+
+@media (min-width: 783px) {
+  .final-page__title {
+    font-size: 3.2rem;
+  }
+}

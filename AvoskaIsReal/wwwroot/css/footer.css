@@ -1,0 +1,21 @@
+.footer {
+  background-color: var(--gray);
+  color: var(--brown-dark);
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+
+.footer__log-in-link {
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 220px;
+}
+
+.footer__horror-text {
+  font-family: "Sehnsucht Font", sans-serif;
+  font-size: 2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

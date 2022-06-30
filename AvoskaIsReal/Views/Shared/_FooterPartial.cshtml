@@ -1,0 +1,13 @@
+﻿@{
+    string years = "2022";
+    if (DateTime.Now.Year != 2022)
+    {
+        years += " - " + DateTime.Now.Year;
+    }
+}
+
+<footer class="footer padding-horizontal">
+    <p>@years. Авоська существует &copy;. Все права защищены.</p>
+    <a class="link footer__log-in-link">Войти в аккаунт</a>
+    <p class="footer__horror-text">Обернись</p>
+</footer>

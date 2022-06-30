@@ -1,0 +1,62 @@
+.form {
+}
+
+.form__item {
+  padding-bottom: 1em;
+}
+
+.form__label {
+  display: block;
+  padding-bottom: 0.5em;
+}
+
+.form__item > input,
+.form__item > textarea,
+.form__select {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5em;
+  background-color: var(--gray);
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  color: var(--brown-dark);
+
+  border: 1px solid transparent;
+}
+
+.form__item > input:focus,
+.form__item > textarea:focus,
+.form__select:focus {
+  border: 1px solid var(--brown);
+}
+
+.form__item > textarea {
+  height: 6em;
+  resize: vertical;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.form__padding-bottom {
+  padding-bottom: 3em;
+}
+
+.form__current-user-image {
+  width: 100%;
+}
+
+.form__ck-editor {
+  min-height: 24em;
+  background-color: var(--gray);
+  background-clip: content-box;
+}
+
+@media (min-width: 54em) {
+  .form__submit {
+    width: 50%;
+  }
+}

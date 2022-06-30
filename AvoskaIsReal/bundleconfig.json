@@ -1,0 +1,46 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/js/scripts.js",
+    "inputFiles": [
+      "wwwroot/js/blocks/limited-text.js",
+      "wwwroot/js/blocks/nav-panel.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/styles.css",
+    "inputFiles": [
+      "wwwroot/css/article.css",
+      "wwwroot/css/article-card.css",
+      "wwwroot/css/article-cards.css",
+      "wwwroot/css/avatar.css",
+      "wwwroot/css/blur-back-image.css",
+
+      "wwwroot/css/body.css",
+      "wwwroot/css/header.css",
+      "wwwroot/css/logo.css",
+      "wwwroot/css/burger.css",
+      "wwwroot/css/title.css",
+      "wwwroot/css/page.css",
+      "wwwroot/css/padding-horizontal.css",
+      "wwwroot/css/background.css",
+      "wwwroot/css/button.css",
+      "wwwroot/css/main-page.css",
+      "wwwroot/css/nav-panel.css",
+      "wwwroot/css/footer.css",
+      "wwwroot/css/text.css",
+      "wwwroot/css/link.css",
+      "wwwroot/css/final-page.css",
+      "wwwroot/css/links-list.css",
+
+      "wwwroot/css/entities-list.css",
+      "wwwroot/css/form.css",
+      "wwwroot/css/info-hint.css",
+      "wwwroot/css/inline-button.css",
+      "wwwroot/css/limited-text.css",
+      "wwwroot/css/user-info.css",
+      "wwwroot/css/contact-page.css",
+      "wwwroot/css/log-in-page.css"
+
+    ]
+  }
+]

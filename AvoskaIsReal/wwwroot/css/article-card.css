@@ -1,0 +1,56 @@
+.article-card {
+  position: relative;
+}
+
+.article-card__title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--white);
+
+  padding-bottom: 1rem;
+}
+
+.article-card__image {
+  width: 100%;
+}
+
+.article-card__text {
+  padding: 1em 0;
+  color: var(--white);
+}
+
+.article-card__avatar,
+.article-card__name-and-date {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.article-card__avatar {
+  width: 2.875em;
+  height: 2.875em;
+  border-radius: 50%;
+}
+
+.article-card__name-and-date {
+  padding-left: 1em;
+  color: var(--gray);
+}
+
+.article-card__author-name {
+  font-weight: 700;
+  padding-bottom: 0.2em;
+}
+
+.article-card__date {
+  font-size: 0.8em;
+}
+
+.article-card__default-link {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}

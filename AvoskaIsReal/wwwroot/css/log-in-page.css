@@ -1,0 +1,26 @@
+.log-in-page {
+  color: var(--light);
+  text-align: center;
+  padding-top: 10.25em;
+}
+
+.log-in-page .link {
+  color: var(--gray);
+}
+.log-in-page .link:hover {
+  color: var(--orange);
+}
+
+.log-in-page input {
+  text-align: center;
+}
+.log-in-page__button {
+  padding-top: 1.2em;
+}
+
+@media (min-width: 46em) {
+  .log-in-page .form {
+    width: 32em;
+    margin: 0 auto;
+  }
+}

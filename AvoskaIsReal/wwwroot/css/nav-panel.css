@@ -1,0 +1,46 @@
+.nav-panel {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding-top: 3em;
+  overflow: auto;
+
+  text-align: center;
+  font-size: 1.4rem;
+
+  transform: translateX(0%);
+  transition: transform 200ms;
+}
+
+.nav-panel .link {
+  color: var(--light);
+  text-decoration: none;
+}
+
+.nav-panel__links-list {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+
+.nav-panel__hor-line {
+  width: 5em;
+  height: 2px;
+  background-color: var(--light);
+  margin: 0 auto;
+}
+
+.nav-panel_closed {
+  transform: translateX(100%);
+}
+
+.nav-panel__button {
+  cursor: pointer;
+  transition: color 1000ms;
+}
+
+.nav-panel__button_opened > * {
+  color: var(--gray);
+}

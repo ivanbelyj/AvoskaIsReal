@@ -1,0 +1,37 @@
+.blur-back-image {
+  position: relative;
+
+  background-image: url("../images/biomes.jpg");
+  background-attachment: scroll;
+  background-size: cover;
+  background-clip: padding-box;
+}
+
+.blur-back-image::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px) brightness(80%);
+}
+
+.blur-back-image__image {
+  display: block;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 56em) {
+  .blur-back-image__image {
+    width: 40em;
+    margin: 0 auto;
+  }
+}

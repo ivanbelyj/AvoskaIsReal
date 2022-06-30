@@ -1,0 +1,34 @@
+.entities-list a {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  vertical-align: middle;
+}
+.entities-list a:first-child {
+  padding-left: 0;
+}
+
+.entities-list a:last-child {
+  padding-right: 0;
+}
+
+.entities-list__entity-title {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 28em;
+
+  font-weight: 700;
+}
+
+@media (max-width: 54em) {
+  .entities-list__entity-title {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 30em) {
+  .entities-list__entity-title {
+    max-width: 40%;
+  }
+}

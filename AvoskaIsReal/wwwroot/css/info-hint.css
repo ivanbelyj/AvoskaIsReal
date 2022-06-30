@@ -1,0 +1,41 @@
+.info-hint {
+  display: inline-block;
+  height: 1.2em;
+  width: 1.2em;
+  position: relative;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  text-align: center;
+
+  border-radius: 50%;
+  font-size: 1em;
+  font-weight: 500;
+  color: var(--white);
+  background-color: var(--gray);
+  transition: background-color 200ms;
+}
+.info-hint::after {
+  content: attr(data-info-hint);
+  position: absolute;
+  background-color: var(--brown);
+  color: var(--light);
+  font-size: 0.9rem;
+  border-radius: 0.8em;
+  z-index: 10;
+
+  word-spacing: 10em;
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+  transition: width 200ms, padding 200ms, opacity 200ms;
+}
+
+.info-hint:hover::after {
+  width: 10em;
+  padding: 0.8em;
+  opacity: 1;
+}
+
+.info-hint:hover {
+  background-color: var(--orange);
+}

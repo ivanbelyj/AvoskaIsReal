@@ -1,13 +1,25 @@
 ﻿<!DOCTYPE html>
 
-<html>
+<html lang="ru">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    @{
+        await Html.RenderPartialAsync("_MetatagsPartial");
+    }
 </head>
-<body>
+<body class="body">
+    @if (IsSectionDefined("Header"))
+    {
+        @RenderSection("Header")
+    } else
+    {
+        
+    }
     <div>
         @RenderBody()
     </div>
+    @{
+        await Html.RenderPartialAsync("_FooterPartial");
+    }
+    @{ await Html.RenderPartialAsync("_ScriptsPartial"); }
 </body>
 </html>

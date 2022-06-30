@@ -1,0 +1,14 @@
+.logo {
+  font-family: "Sehnsucht Font";
+  font-size: 1.6rem;
+  letter-spacing: -0.27em;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.logo_shadow {
+  text-shadow: 0 0 5px var(--brown-dark);
+}

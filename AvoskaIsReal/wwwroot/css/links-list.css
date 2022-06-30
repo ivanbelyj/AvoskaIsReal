@@ -1,0 +1,10 @@
+.links-list {
+  list-style-type: none;
+}
+
+.links-list li {
+  padding-bottom: 0.9em;
+}
+.links-list li:last-child {
+  padding-bottom: 0;
+}

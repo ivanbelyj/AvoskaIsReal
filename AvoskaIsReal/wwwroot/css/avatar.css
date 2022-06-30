@@ -1,0 +1,8 @@
+.avatar {
+  height: 1.5em;
+  width: 1.5em;
+  display: inline-block;
+  margin-right: 0.5em;
+  border-radius: 50%;
+  vertical-align: middle;
+}

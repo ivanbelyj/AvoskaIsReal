@@ -1,0 +1,22 @@
+.inline-button {
+  padding: 0.5em 1em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  transition: background-color 200ms, color 200ms;
+}
+
+.inline-button_brown {
+  background-color: var(--brown);
+  color: var(--light);
+}
+
+.form__upload-button {
+  display: inline-block;
+}
+
+.inline-button_brown:hover {
+  background-color: var(--orange);
+  color: var(--brown-dark);
+}

@@ -1,0 +1,43 @@
+.contact-page {
+  color: var(--light);
+  text-align: center;
+  padding-top: 10.25em;
+}
+
+.contact-page__text-block {
+  margin-bottom: 5em;
+}
+
+.contact-page__text-block:last-child {
+  margin-bottom: 0;
+}
+
+.contact-page__links-list {
+  margin-bottom: 2em;
+}
+
+.contact-page__links-list li {
+  padding-bottom: 0.5em;
+}
+.contact-page__links-list .link {
+  color: var(--light);
+}
+
+.contact-page__links-list .link:hover {
+  color: var(--orange);
+}
+
+.contact-page__title {
+  color: var(--white);
+}
+
+@media (min-width: 54em) {
+  .contact-page__text-block {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-page__text-block {
+    margin-bottom: 6.5em;
+  }
+}

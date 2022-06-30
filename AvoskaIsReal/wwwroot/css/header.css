@@ -1,0 +1,37 @@
+.header {
+  position: fixed;
+  box-sizing: border-box;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.header_vertical__burger {
+  margin: 0 auto;
+}
+
+.header_vertical__logo {
+  text-align: center;
+  margin-bottom: 0.3em;
+}
+
+.header_horizontal {
+  padding-top: 0.7em;
+}
+.header_horizontal__burger {
+  display: inline-block;
+  margin-right: 2.5em;
+  vertical-align: middle;
+}
+
+.header_horizontal__logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 354px) {
+  .header__logo {
+    display: none;
+  }
+}

@@ -1,0 +1,12 @@
+.user-info__title {
+  font-weight: 700;
+  padding-bottom: 0.6em;
+}
+
+.user-info__field {
+  padding-top: 1.2em;
+}
+
+.user-info__field:first-child {
+  padding-top: 0;
+}

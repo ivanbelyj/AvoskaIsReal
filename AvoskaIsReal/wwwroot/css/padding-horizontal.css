@@ -1,0 +1,11 @@
+.padding-horizontal {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+@media (min-width: 75em) {
+  .padding-horizontal {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+}

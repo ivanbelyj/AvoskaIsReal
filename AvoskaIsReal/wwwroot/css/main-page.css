@@ -1,0 +1,40 @@
+.main-page__title {
+  padding: 200px 0;
+  color: var(--white);
+}
+
+.main-page p {
+  color: var(--white);
+}
+
+.main-page__text-block {
+  margin-bottom: 3em;
+}
+
+.main-page {
+  padding-top: 0;
+}
+
+.main-page > * {
+  text-align: center;
+}
+
+.main-page__title-avoska {
+  font-size: 1.7em;
+  font-weight: 900;
+  display: block;
+}
+
+@media (min-width: 64em) {
+  .main-page__title {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 54em) {
+  .main-page__p,
+  .main-page__button {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

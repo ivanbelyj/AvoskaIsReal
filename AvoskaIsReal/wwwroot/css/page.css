@@ -1,0 +1,7 @@
+.page {
+  box-sizing: border-box;
+  padding-top: 5.5em;
+  padding-bottom: 6em;
+
+  min-height: 100vh;
+}

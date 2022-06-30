@@ -1,0 +1,14 @@
+.limited-text__content {
+}
+
+.limited-text__button {
+  display: inline-block;
+  color: var(--dark);
+  padding-top: 0.625em;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.limited-text__button:hover {
+  text-decoration: underline;
+}

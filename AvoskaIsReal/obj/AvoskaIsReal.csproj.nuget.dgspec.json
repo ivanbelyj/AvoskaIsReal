@@ -54,9 +54,17 @@
               "target": "Package",
               "version": "[6.0.6, )"
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
             "MySql.Data.EntityFramework": {
               "target": "Package",
               "version": "[8.0.29, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
