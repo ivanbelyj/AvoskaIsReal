@@ -23,5 +23,10 @@ namespace AvoskaIsReal.Controllers
         {
             return View();
         }
+
+        public IActionResult Article(string id)
+        {
+            return id == "id"? View() : Content("");
+        }
     }
 }

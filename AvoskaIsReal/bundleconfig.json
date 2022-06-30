@@ -9,7 +9,6 @@
   {
     "outputFileName": "wwwroot/css/styles.css",
     "inputFiles": [
-      "wwwroot/css/article.css",
       "wwwroot/css/article-card.css",
       "wwwroot/css/article-cards.css",
       "wwwroot/css/avatar.css",
@@ -32,6 +31,7 @@
       "wwwroot/css/final-page.css",
       "wwwroot/css/links-list.css",
 
+      "wwwroot/css/article.css",
       "wwwroot/css/entities-list.css",
       "wwwroot/css/form.css",
       "wwwroot/css/info-hint.css",

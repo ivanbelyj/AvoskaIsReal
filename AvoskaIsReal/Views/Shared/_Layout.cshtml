@@ -10,22 +10,25 @@
     @if (IsSectionDefined("Header"))
     {
         @RenderSection("Header")
-    } else
+    }
+    else
     {
+        string burgerClass = ViewBag?.isHeaderGray != null ? "burger_gray" : "burger_brown-dark";
+        string logoClass = ViewBag?.isHeaderGray != null ? "gray-color" : "brown-dark-color";
         <header class="header header_horizontal padding-horizontal nav-panel__button">
-            <div
-            class="burger nav-panel__burger header_horizontal__burger burger_brown-dark"
-            >
-            <div class="burger__line burger__top"></div>
-            <div class="burger__line burger__middle"></div>
-            <div class="burger__line burger__bottom"></div>
+            <div class="burger nav-panel__burger header_horizontal__burger @burgerClass">
+                <div class="burger__line burger__top"></div>
+                <div class="burger__line burger__middle"></div>
+                <div class="burger__line burger__bottom"></div>
             </div>
-            <div class="logo header__logo header_horizontal__logo brown-dark-color">
-            авоська существует
+            <div class="logo header__logo header_horizontal__logo @logoClass">
+                авоська существует
             </div>
         </header>
     }
-    @{ await Html.RenderPartialAsync("_NavPartial"); }
+    @{
+        await Html.RenderPartialAsync("_NavPartial");
+    }
 
     <div>
         @RenderBody()
@@ -33,6 +36,8 @@
     @{
         await Html.RenderPartialAsync("_FooterPartial");
     }
-    @{ await Html.RenderPartialAsync("_ScriptsPartial"); }
+    @{
+        await Html.RenderPartialAsync("_ScriptsPartial");
+    }
 </body>
 </html>

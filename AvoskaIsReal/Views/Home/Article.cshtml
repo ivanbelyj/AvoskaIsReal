@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.isHeaderGray = true;
+
+    // Todo
+    // Статья проверяется на наличие title image
+    bool hasTitleImage = false;
+}
+
+<main class="background_dark page light-color">
+    <article class="article">
+        <h2 class="title_2 article__title padding-horizontal">Семья Авоськи</h2>
+        @if (hasTitleImage)
+        {
+            <div class="article__title-image blur-back-image padding-horizontal">
+                <img class="blur-back-image__image" src="images/biomes.jpg" />
+            </div>
+        }
+
+        <div class="article__content padding-horizontal">
+            <p>
+                Это контент статьи. Выше изображен title Image, он может
+                отсутствовать, тогда контент начинается сразу же после заголовка.
+                Это контент статьи. Выше изображен title Image, он может
+                отсутствовать, тогда контент начинается сразу же после заголовка.Это
+                контент статьи. Выше изображен title Image, он может отсутствовать,
+                тогда контент начинается сразу же после заголовка.Это контент
+                статьи.
+            </p>
+            <img src="images/biomes.jpg" />
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias
+                provident incidunt deserunt quisquam debitis rerum et quos aperiam,
+                velit iste illo eos, non fugiat voluptas tenetur ab doloremque
+                exercitationem est!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat,
+                quo, dolor porro, exercitationem provident delectus et dignissimos
+                obcaecati inventore ullam numquam neque ipsa sint corrupti atque
+                vero. Delectus, animi nobis? Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Facere ipsam officia cum, quod esse eius adipisci
+                nulla, sint ab ducimus vitae perspiciatis consectetur ad. Et in
+                suscipit nemo saepe nobis?
+            </p>
+        </div>
+        <div class="article__info padding-horizontal">
+            <a href="#"><img class="article__avatar" src="images/pic01.jpg" /></a>
+            <div class="article__author-and-date">
+                <a class="article__author link" href="#">TestUser234</a>
+                <div class="article__date">26.08.2022</div>
+            </div>
+        </div>
+    </article>
+</main>

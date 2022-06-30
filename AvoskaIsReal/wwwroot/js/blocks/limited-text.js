@@ -4,7 +4,7 @@ $(function () {
   );
 });
 
-const symbolsCountLimit = 160;
+const symbolsCountLimit = 240;
 let limitedTexts;
 
 class LimitedText {

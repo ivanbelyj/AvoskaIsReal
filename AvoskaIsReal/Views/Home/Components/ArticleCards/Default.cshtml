@@ -3,7 +3,8 @@
     @for (int i = 0; i < Model; i++)
     {
         <article class="article-card background_dark">
-            <a class="article-card__default-link" href="article.html"></a>
+            <a class="article-card__default-link" asp-area=""
+            asp-controller="Home" asp-action="Article" asp-route-id="id"></a>
             <h3 class="article-card__title">Семья Авоськи @(i + 1)</h3>
             <img class="article-card__image" src="/images/biomes.jpg" />
             <p class="article-card__text">

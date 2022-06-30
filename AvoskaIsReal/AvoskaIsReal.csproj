@@ -19,9 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="Areas\Moderator\Controllers\" />
     <Folder Include="Areas\Moderator\Views\" />
     <Folder Include="Domain\Entities\" />
     <Folder Include="Domain\Repositories\Abstract\" />
