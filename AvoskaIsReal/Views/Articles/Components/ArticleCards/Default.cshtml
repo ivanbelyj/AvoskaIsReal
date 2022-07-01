@@ -1,0 +1,25 @@
+﻿@model int
+<div class="article-cards">
+    @for (int i = 0; i < Model; i++)
+    {
+        <article class="article-card background_dark">
+            <a class="article-card__default-link" asp-area=""
+           asp-controller="Articles" asp-action="Index" asp-route-id="id"></a>
+            <h3 class="article-card__title">Семья Авоськи @(i + 1)</h3>
+            <img class="article-card__image" src="/images/biomes.jpg" />
+            <p class="article-card__text">
+                Авоську видели в пригородах Воронежа в январе 2019. Фотографии
+                прилагаются
+            </p>
+            <div class="article-card__info">
+                <div class="article-card__author">
+                    <img class="article-card__avatar" src="~/images/biomes.jpg" />
+                    <div class="article-card__name-and-date">
+                        <div class="article-card__author-name">Иван Иванович</div>
+                        <div class="article-card__date">14.09.2022</div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    }
+</div>

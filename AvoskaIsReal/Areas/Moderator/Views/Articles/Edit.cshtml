@@ -1,0 +1,58 @@
+﻿<main class="background_light page padding-horizontal">
+    <h2 class="title_2 brown-dark-color">Редактировать статью</h2>
+    <form class="form" method="post" name="article-form">
+        <div class="form__item">
+            <label class="form__label">Заголовок статьи</label>
+            <input type="text" value="Семья Авоськи" />
+        </div>
+        <div class="form__item">
+            <label class="form__label">Краткое описание</label>
+            <textarea>
+Чтобы лучше понять саму Авоську, стоит разузнать что-то про ее семью</textarea>
+        </div>
+        <div class="form__item form__padding-bottom">
+            <label class="form__label">Категория</label>
+            <select class="form__select">
+                <option value="Доказательства и теории">
+                    Доказательства и теории
+                </option>
+                <option value="Все об Авоське">Все об Авоське</option>
+            </select>
+        </div>
+        <div class="form__item form__ck-editor form__padding-bottom">
+            <!--Здесь будет CK editor-->
+        </div>
+        <div class="form__item">
+            <label class="form__label">
+                Meta keywords<span class="info-hint"
+                                   data-info-hint="Ключевые слова, которые будут использованы поисковой системой">?</span>
+            </label>
+            <input type="text" value="Авоська, доказательства, факты" />
+        </div>
+        <div class="form__item form__padding-bottom">
+            <label class="form__label">
+                Meta description<span class="info-hint"
+                                      data-info-hint="Небольшое описание статьи, которое будет использовано поисковой системой">?</span>
+            </label>
+            <textarea>Здесь вводится небольшое описание</textarea>
+        </div>
+        <div class="form__item">
+            <label class="form__label">Изображение статьи</label>
+            <label class="inline-button inline-button_brown form__upload-button"
+                   for="title-image-upload"
+                   class="form__label">Выбрать файл</label>
+            <input id="title-image-upload" type="file" />
+        </div>
+        <div class="form__item form__padding-bottom">
+            <label class="form__label">Текущее изображение статьи</label>
+            <img class="form__current-user-image" src="images/pic01.jpg" />
+        </div>
+
+        <div class="form__item">
+            <button class="button form__submit" type="submit">Сохранить</button>
+        </div>
+        <div class="form__item">
+            <a class="link" href="#">Удалить статью</a>
+        </div>
+    </form>
+</main>

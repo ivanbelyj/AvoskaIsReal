@@ -1,0 +1,51 @@
+﻿<main class="background_light page padding-horizontal">
+    <h2 class="title_2">Редактировать профиль</h2>
+    <form class="form" method="post" name="user-form">
+        <div class="form__item">
+            <label class="form__label">Логин</label>
+            <input type="text" value="Имя тестового пользователя" />
+        </div>
+        <div class="form__item">
+            <label class="form__label">Имя</label>
+            <input type="text" value="Иван Иванович" />
+        </div>
+        <div class="form__item">
+            <label class="form__label">Email</label>
+            <input type="email" value="example@mail.com" />
+        </div>
+        <div class="form__item form__padding-bottom">
+            <a class="link">Изменить пароль</a>
+        </div>
+        <div class="form__item">
+            <label class="form__label">Карьера</label>
+            <textarea>
+Изучает Авоську с 9 лет. Соавтор 3-х книг об Авоське и Гавнистане</textarea>
+        </div>
+        <div class="form__item">
+            <label class="form__label">О себе</label>
+            <textarea>Краткое описание пользователся о себе</textarea>
+        </div>
+        <div class="form__item form__padding-bottom">
+            <label class="form__label">Контакты</label>
+            <textarea>www.testusersite.org</textarea>
+        </div>
+        <div class="form__item">
+            <label class="form__label">Фото профиля</label>
+            <label class="inline-button inline-button_brown form__upload-button"
+                   for="file-upload"
+                   class="form__label">Выбрать файл</label>
+            <input id="file-upload" type="file" />
+        </div>
+        <div class="form__item form__padding-bottom">
+            <label class="form__label">Текущее фото профиля</label>
+            <img class="form__current-user-image" src="images/pic01.jpg" />
+        </div>
+
+        <div class="form__item">
+            <button class="button form__submit" type="submit">Сохранить</button>
+        </div>
+        <div class="form__item">
+            <a class="link">Удалить аккаунт</a>
+        </div>
+    </form>
+</main>

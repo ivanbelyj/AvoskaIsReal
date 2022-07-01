@@ -1,20 +1,19 @@
 .button {
-  display: block;
-  width: 100%;
-  padding: 0.9em 0;
-  background: linear-gradient(-20deg, #feb571, #ffdebe);
-  border: none;
-  color: var(--brown-dark);
-  font-size: 1.25rem;
-  font-weight: 700;
-
-  box-shadow: 0 0 0 var(--orange);
-  transition: box-shadow 200ms, transform 200ms;
-
-  cursor: pointer;
+    display: block;
+    width: 100%;
+    padding: 0.9em 0;
+    background: linear-gradient(-20deg, #feb571, #ffdebe);
+    border: none;
+    color: var(--brown-dark);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 0 0 var(--orange);
+    transition: box-shadow 200ms, transform 200ms;
+    cursor: pointer;
 }
 
-.button:hover {
-  box-shadow: 0 0 15px var(--brown-dark);
-  transform: scale(1.1);
-}
+    .button:hover {
+        box-shadow: 0 0 15px var(--brown-dark);
+        transform: scale(1.1);
+    }

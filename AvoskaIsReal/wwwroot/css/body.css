@@ -1,52 +1,53 @@
 @font-face {
-  font-family: "LC Body";
-  src: url("/fonts/LC\ Body.ttf");
+    font-family: "LC Body";
+    src: url("/fonts/LC\ Body.ttf");
 }
 
 @font-face {
-  font-family: "Sehnsucht Font";
-  src: url("Sehnsucht Font");
+    font-family: "Sehnsucht Font";
+    src: url("Sehnsucht Font");
 }
 
 :root {
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-
-  --gray: #bdb4ad;
-  --white: #fff;
-  --light: #fff7f1;
-  --brown: #654d38;
-  --brown-dark: #36291d;
-  --dark: #251c14;
-  --orange: #feb571;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    --gray: #bdb4ad;
+    --white: #fff;
+    --light: #fff7f1;
+    --brown: #654d38;
+    --brown-dark: #36291d;
+    --dark: #251c14;
+    --orange: #feb571;
 }
 
 *::-moz-selection {
-  background-color: var(--brown);
-  color: var(--light);
+    background-color: var(--brown);
+    color: var(--light);
 }
 
 *::selection {
-  background-color: var(--brown);
-  color: var(--light);
+    background-color: var(--brown);
+    color: var(--light);
 }
 
 :root,
 .body,
 ul,
 ol {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .gray-color {
-  color: var(--gray);
+    color: var(--gray);
 }
+
 .brown-dark-color {
-  color: var(--brown-dark);
+    color: var(--brown-dark);
 }
+
 .light-color {
-  color: var(--light);
+    color: var(--light);
 }
 
 h1,
@@ -55,15 +56,15 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
+    margin: 0;
 }
 
 p {
-  margin: 0;
+    margin: 0;
 }
 
 @media (min-width: 75em) {
-  :root {
-    font-size: 18px;
-  }
+    :root {
+        font-size: 18px;
+    }
 }
