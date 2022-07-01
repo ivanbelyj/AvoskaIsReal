@@ -5,8 +5,8 @@ namespace AvoskaIsReal.Domain
 {
     public class AppDbContext : DbContext
     {
-        private DbSet<Article> Articles { get; set; }
-        private DbSet<Article> TextFields { get; set; }
+        public DbSet<Article> Articles { get; set; }
+        public DbSet<TextField> TextFields { get; set; }
 
         public AppDbContext()
         {
