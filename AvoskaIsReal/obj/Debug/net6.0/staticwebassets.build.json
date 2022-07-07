@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZnM76NdLd5TPi2oH7c85w9ok4Lef4eHDnKs+dlSf+Js=",
+  "Hash": "9gy9LVJmxdgaF90tPGN2O3oczDH/gYxCciN64wOyJbs=",
   "Source": "AvoskaIsReal",
   "BasePath": "_content/AvoskaIsReal",
   "Mode": "Default",
@@ -16,23 +16,6 @@
     }
   ],
   "Assets": [
-    {
-      "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\css\\article.css",
-      "SourceId": "AvoskaIsReal",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\",
-      "BasePath": "_content/AvoskaIsReal",
-      "RelativePath": "css/article.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\article.css"
-    },
     {
       "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\css\\article-card.css",
       "SourceId": "AvoskaIsReal",
@@ -66,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\article-cards.css"
+    },
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\css\\article.css",
+      "SourceId": "AvoskaIsReal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\",
+      "BasePath": "_content/AvoskaIsReal",
+      "RelativePath": "css/article.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\article.css"
     },
     {
       "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\css\\avatar.css",

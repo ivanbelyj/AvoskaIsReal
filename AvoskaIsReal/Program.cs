@@ -1,18 +1,18 @@
 using AvoskaIsReal.Domain;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// builder.Services.AddRazorPages();
-builder.Services.AddControllersWithViews();
-
-string connection = builder.Configuration.GetSection("Project")
-    .GetConnectionString("Connection");
+string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>((options) =>
 {
     options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 11)));
 });
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -30,12 +30,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-// app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseEndpoints(configure =>
 {
     configure.MapControllerRoute("default", "{Controller=Home}/{Action=Index}/{id?}");
 });
-// app.MapRazorPages();
 
 app.Run();
