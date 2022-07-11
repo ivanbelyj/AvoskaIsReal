@@ -26,7 +26,7 @@
       "wwwroot/css/main-page.css",
       "wwwroot/css/nav-panel.css",
       "wwwroot/css/footer.css",
-      "wwwroot/css/text.css",
+
       "wwwroot/css/link.css",
       "wwwroot/css/final-page.css",
       "wwwroot/css/links-list.css",
@@ -39,7 +39,9 @@
       "wwwroot/css/limited-text.css",
       "wwwroot/css/user-info.css",
       "wwwroot/css/contact-page.css",
-      "wwwroot/css/log-in-page.css"
+      "wwwroot/css/log-in-page.css",
+
+      "wwwroot/css/text.css"
 
     ]
   }

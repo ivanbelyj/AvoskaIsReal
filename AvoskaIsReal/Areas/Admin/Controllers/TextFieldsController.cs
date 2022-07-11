@@ -2,6 +2,7 @@
 
 namespace AvoskaIsReal.Areas.Admin.Controllers
 {
+    [Area("admin")]
     public class TextFieldsController : Controller
     {
         public IActionResult Index()

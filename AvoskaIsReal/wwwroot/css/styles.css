@@ -497,11 +497,6 @@ p {
   user-select: none;
 }
 
-.text_dangerous {
-  color: #7a2727;
-  font-weight: 500;
-}
-
 .link {
   position: relative;
   text-decoration: underline;
@@ -890,4 +885,9 @@ input[type="file"] {
     width: 32em;
     margin: 0 auto;
   }
+}
+
+.text_dangerous {
+  color: #7a2727;
+  font-weight: 500;
 }

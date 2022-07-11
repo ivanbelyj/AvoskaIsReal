@@ -1,11 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AvoskaIsReal.Domain;
+using AvoskaIsReal.Domain.Repositories.Abstract;
+using AvoskaIsReal.Domain.Repositories.EntityFramework;
 using AvoskaIsReal;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddTransient<IArticlesRepository, EFArticlesRepository>();
+builder.Services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
+builder.Services.AddTransient<DataManager>();
+
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>((options) =>
 {
@@ -26,7 +33,7 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Initialize Db
+// Initialize Db.
 using (IServiceScope scope = app.Services.CreateScope())
 {
     IServiceProvider services = scope.ServiceProvider;
@@ -57,6 +64,17 @@ app.UseAuthorization();
 
 app.UseEndpoints(configure =>
 {
+    // configure.MapControllerRoute("areas", "{area:exists}/{Controller}/{Action=Index}/{id?}");
+    configure.MapAreaControllerRoute(
+        name: "admin_area",
+        areaName: "admin",
+        pattern: "admin/{controller}/{action}/{id?}"
+        );
+    configure.MapAreaControllerRoute(
+        name: "moderator_area",
+        areaName: "moderator",
+        pattern: "moderator/{controller}/{action}/{id?}"
+        );
     configure.MapControllerRoute("default", "{Controller=Home}/{Action=Index}/{id?}");
 });
 

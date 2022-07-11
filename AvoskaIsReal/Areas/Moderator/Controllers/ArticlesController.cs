@@ -2,6 +2,7 @@
 
 namespace AvoskaIsReal.Areas.Moderator.Controllers
 {
+    [Area("moderator")]
     public class ArticlesController : Controller
     {
         public IActionResult List()
