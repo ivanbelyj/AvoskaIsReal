@@ -19,9 +19,29 @@ namespace AvoskaIsReal.Controllers
 
         // Профиль пользователя
         [AllowAnonymous]
-        public IActionResult Index(string id)
+        public async Task<IActionResult> Index(string? id = null)
         {
-            return View();
+            User user;
+            if (id is null)
+            {
+                // По умолчанию - профиль текущего аутентифицированного пользователя
+                user = await _userManager.GetUserAsync(User);
+            } else
+            {
+                user = await _userManager.FindByIdAsync(id);
+            }
+            if (user != null)
+            {
+                AccountViewModel model = new AccountViewModel() {
+                    Login = user.UserName,
+                    About = user.About,
+                    Career = user.Career,
+                    Contacts = user.Contacts,
+                    AvatarUrl = user.AvatarUrl
+                };
+                return View("Show", model);
+            }
+            return Unauthorized();
         }
 
         // returnUrl для случая, если пользователя перенаправили на вход при его попытке
@@ -43,6 +63,7 @@ namespace AvoskaIsReal.Controllers
                 if (user != null)
                 {
                     await _signInManager.SignOutAsync();
+                    // Todo: remember me не работает
                     Microsoft.AspNetCore.Identity.SignInResult res = await _signInManager
                         .PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (res.Succeeded)
@@ -60,9 +81,10 @@ namespace AvoskaIsReal.Controllers
             return View();
         }
 
-        public IActionResult LogOut()
+        public async Task<IActionResult> LogOut()
         {
-            return View();
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

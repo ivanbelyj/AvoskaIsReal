@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace AvoskaIsReal.Domain
+﻿namespace AvoskaIsReal.Models
 {
-    public class User : IdentityUser
+    public class AccountViewModel
     {
+        public string Login { get; set; }
         public string? Career { get; set; }
         public string? About { get; set; }
         public string? Contacts { get; set; }

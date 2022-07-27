@@ -1,0 +1,54 @@
+﻿@model AccountViewModel
+@{
+    // Todo: ViewBag.defaultAvatarUrl
+    string avatarUrl = Model.AvatarUrl ?? ViewBag.defaultAvatarUrl;
+}
+<main class="background_light page padding-horizontal">
+    <h2 class="title_2">
+        <img class="avatar" src="@avatarUrl" />
+        @Model.Login
+    </h2>
+    <div class="user-info">
+        @if (Model.Career is not null)
+        {
+            <div class="user-info__field">
+                <div class="user-info__title">Карьера</div>
+                    <p>
+                        @Model.Career
+                    </p>
+            </div>
+        }
+        @if (Model.About is not null)
+        {
+            <div class="user-info__field">
+                <div class="user-info__title">О себе</div>
+                <p>
+                    @Model.About
+                </p>
+            </div>
+        }
+
+        @if (Model.Contacts is not null)
+        {
+            <div class="user-info__field">
+                <div class="user-info__title">Контакты</div>
+                <p>
+                    @Model.Contacts
+                </p>
+            </div>
+        }
+    </div>
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <div class="user-info__field">
+            <a class="link link_last" asp-controller="Account"
+                asp-action="Edit">Редактировать профиль</a>
+        </div>
+
+        <div class="user-info__field">
+            <a class="link" asp-controller="Account"
+                asp-action="LogOut">Выйти из аккаунта</a>
+        </div>
+    }
+    
+</main>
