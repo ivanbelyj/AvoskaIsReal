@@ -14,14 +14,15 @@ namespace AvoskaIsReal
 
             // Create owner's account
             string ownerName = configuration.GetSection("Project")["OwnerUserName"];
+            string ownerEmail = configuration.GetSection("Project")["OwnerEmail"];
             string ownerPassword =
                 configuration.GetSection("Project")["OwnerInitialPassword"];
             User owner = new User()
             {
-                UserName = ownerName
+                UserName = ownerName,
+                Email = ownerEmail,
             };
-            IdentityResult createRes =
-                await userManager.CreateAsync(owner, ownerPassword);
+            IdentityResult createRes = await userManager.CreateAsync(owner, ownerPassword);
             if (createRes.Succeeded)
             {
                 await userManager.AddToRoleAsync(owner, "owner");

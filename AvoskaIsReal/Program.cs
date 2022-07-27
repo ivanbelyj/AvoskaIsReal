@@ -4,6 +4,7 @@ using AvoskaIsReal.Domain;
 using AvoskaIsReal.Domain.Repositories.Abstract;
 using AvoskaIsReal.Domain.Repositories.EntityFramework;
 using AvoskaIsReal;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddTransient<IArticlesRepository, EFArticlesRepository>();
 builder.Services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
 builder.Services.AddTransient<DataManager>();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => options.LoginPath = "account/login");
+builder.Services.AddAuthorization();
+
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>((options) =>
 {
@@ -21,6 +26,8 @@ builder.Services.AddDbContext<AppDbContext>((options) =>
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
     options.User.RequireUniqueEmail = true;
+    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Password.RequiredUniqueChars = 1;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 8;
@@ -37,9 +44,9 @@ var app = builder.Build();
 using (IServiceScope scope = app.Services.CreateScope())
 {
     IServiceProvider services = scope.ServiceProvider;
-    UserManager<User> userManager =
+    var userManager =
         (UserManager<User>)services.GetRequiredService(typeof(UserManager<User>));
-    RoleManager<IdentityRole> roleManager = (RoleManager<IdentityRole>)services
+    var roleManager = (RoleManager<IdentityRole>)services
         .GetRequiredService(typeof(RoleManager<IdentityRole>));
     await DbInitializer.InitializeAsync(userManager, roleManager, app.Configuration);
 }

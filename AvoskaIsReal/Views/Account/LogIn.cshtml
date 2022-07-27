@@ -1,25 +1,31 @@
-﻿<main class="page log-in-page background_dark padding-horizontal">
+﻿@model LogInViewModel
+<main class="page log-in-page background_dark padding-horizontal">
     <h2 class="title_1">Вход</h2>
-    <form class="form">
-    <div class="form__item">
-        <label class="form__label">Логин</label>
-        <input type="text" value="Имя тестового пользователя" />
-    </div>
-    <div class="form__item">
-        <label class="form__label">Пароль</label>
-        <input type="password" value="Иван Иванович" />
-    </div>
-    <div class="form__item">
-        <label class="form__label">Запомнить вас</label>
-        <input type="checkbox" />
-    </div>
-    <div class="form__item log-in-page__button">
-        <button class="button" type="submit">Войти</button>
-    </div>
-    <div class="form__item">
-        <a class="link" asp-area="" asp-controller="Home"
-        asp-action="Contact">Хотите завести аккаунт?</a>
-    </div>
+    <form class="form" asp-area="" asp-controller="Account" asp-action="LogIn" method="post"
+        asp-route-returnUrl="@ViewBag.returnUrl">
+        <div asp-validation-summary="All"></div>
+        <div class="form__item">
+            <label asp-for="Email" class="form__label">Email</label>
+            <input asp-for="Email" type="text" value="" />
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="form__item">
+            <label asp-for="Password" class="form__label">Пароль</label>
+            <input asp-for="Password" type="password" value="" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <div class="form__item">
+            <label asp-for="RememberMe" class="form__label">Запомнить вас</label>
+            <input asp-for="RememberMe" type="checkbox" />
+            <span asp-validation-for="RememberMe"></span>
+        </div>
+        <div class="form__item log-in-page__button">
+            <button class="button" type="submit">Войти</button>
+        </div>
+        <div class="form__item">
+            <a class="link" asp-area="" asp-controller="Home"
+                asp-action="Contact">Хотите завести аккаунт?</a>
+        </div>
     </form>
 </main>
 
