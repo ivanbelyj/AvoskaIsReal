@@ -17,33 +17,6 @@ namespace AvoskaIsReal.Controllers
             _userManager = userManager;
         }
 
-        // Профиль пользователя
-        [AllowAnonymous]
-        public async Task<IActionResult> Index(string? id = null)
-        {
-            User user;
-            if (id is null)
-            {
-                // По умолчанию - профиль текущего аутентифицированного пользователя
-                user = await _userManager.GetUserAsync(User);
-            } else
-            {
-                user = await _userManager.FindByIdAsync(id);
-            }
-            if (user != null)
-            {
-                AccountViewModel model = new AccountViewModel() {
-                    Login = user.UserName,
-                    About = user.About,
-                    Career = user.Career,
-                    Contacts = user.Contacts,
-                    AvatarUrl = user.AvatarUrl
-                };
-                return View("Show", model);
-            }
-            return Unauthorized();
-        }
-
         // returnUrl для случая, если пользователя перенаправили на вход при его попытке
         // неавторизованных действий
         [AllowAnonymous]
@@ -55,6 +28,7 @@ namespace AvoskaIsReal.Controllers
 
         [AllowAnonymous]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogIn(LogInViewModel model, string? returnUrl = null)
         {
             if (ModelState.IsValid)
@@ -76,11 +50,7 @@ namespace AvoskaIsReal.Controllers
             return View(model);
         }
 
-        public IActionResult Edit()
-        {
-            return View();
-        }
-
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();

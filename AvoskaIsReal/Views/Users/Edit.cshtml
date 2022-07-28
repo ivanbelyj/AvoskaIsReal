@@ -1,0 +1,51 @@
+﻿@model EditUserViewModel
+
+<main class="background_light page padding-horizontal">
+    <h2 class="title_2">Редактировать профиль</h2>
+    <form class="form" method="post" name="user-form" enctype="multipart/form-data"
+        asp-controller="Users" asp-action="Edit">
+        <div asp-validation-summary="All"></div>
+        <input asp-for="Id" type="hidden"/>
+        <div class="form__item">
+            <label asp-for="Login" class="form__label">Логин</label>
+            <input asp-for="Login" type="text" />
+        </div>
+        <div class="form__item">
+            <label asp-for="Email" class="form__label">Email</label>
+            <input asp-for="Email" type="email" />
+        </div>
+        <div class="form__item form__padding-bottom">
+            <a class="link">Изменить пароль</a>
+        </div>
+        <div class="form__item">
+            <label asp-for="Career" class="form__label">Карьера</label>
+            <textarea asp-for="Career"></textarea>
+        </div>
+        <div class="form__item">
+            <label asp-for="About" class="form__label">О себе</label>
+            <textarea asp-for="About"></textarea>
+        </div>
+        <div class="form__item form__padding-bottom">
+            <label asp-for="Contacts" class="form__label">Контакты</label>
+            <textarea asp-for="Contacts"></textarea>
+        </div>
+        <div class="form__item">
+            <label asp-for="AvatarUrl" class="form__label">Фото профиля</label>
+            <label class="inline-button inline-button_brown form__upload-button form__label"
+                   for="file-upload">Выбрать файл</label>
+            <input id="file-upload" name="avatarFile" type="file" />
+        </div>
+        @if (Model.AvatarUrl is not null) {
+            <div class="form__item form__padding-bottom">
+                <label class="form__label">Текущее фото профиля</label>
+                <img class="form__current-user-image" src="~/images/@Model.AvatarUrl" />
+            </div>
+        }
+        <div class="form__item">
+            <button class="button form__submit" type="submit">Сохранить</button>
+        </div>
+        <div class="form__item">
+            <a class="link">Удалить аккаунт</a>
+        </div>
+    </form>
+</main>

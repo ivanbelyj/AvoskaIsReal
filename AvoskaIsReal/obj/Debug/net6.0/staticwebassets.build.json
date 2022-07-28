@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZnM76NdLd5TPi2oH7c85w9ok4Lef4eHDnKs+dlSf+Js=",
+  "Hash": "aj6diNgYYeaQ0Vo7uad8hGwR6rIosQuWn8NMhTfJpIQ=",
   "Source": "AvoskaIsReal",
   "BasePath": "_content/AvoskaIsReal",
   "Mode": "Default",
@@ -610,6 +610,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\pic01.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\images\\Без названия341_20220714191046.png",
+      "SourceId": "AvoskaIsReal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\",
+      "BasePath": "_content/AvoskaIsReal",
+      "RelativePath": "images/Без названия341_20220714191046.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Без названия341_20220714191046.png"
+    },
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\images\\Травокосы_20220710184915.png",
+      "SourceId": "AvoskaIsReal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\",
+      "BasePath": "_content/AvoskaIsReal",
+      "RelativePath": "images/Травокосы_20220710184915.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Травокосы_20220710184915.png"
     },
     {
       "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\js\\blocks\\limited-text.js",

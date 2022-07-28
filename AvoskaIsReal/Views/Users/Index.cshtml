@@ -5,7 +5,7 @@
 }
 <main class="background_light page padding-horizontal">
     <h2 class="title_2">
-        <img class="avatar" src="@avatarUrl" />
+        <img class="avatar" src="~/images/@avatarUrl" />
         @Model.Login
     </h2>
     <div class="user-info">
@@ -41,7 +41,7 @@
     @if (User.Identity != null && User.Identity.IsAuthenticated)
     {
         <div class="user-info__field">
-            <a class="link link_last" asp-controller="Account"
+            <a class="link link_last" asp-controller="Users"
                 asp-action="Edit">Редактировать профиль</a>
         </div>
 

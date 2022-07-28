@@ -9,5 +9,10 @@ namespace AvoskaIsReal.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> Create(Guid? userId = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
