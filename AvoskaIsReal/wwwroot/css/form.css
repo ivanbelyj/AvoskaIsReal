@@ -55,6 +55,10 @@ input[type="file"] {
   background-clip: content-box;
 }
 
+.form__upload-button {
+    display: inline-block;
+}
+
 @media (min-width: 54em) {
   .form__submit {
     width: 50%;

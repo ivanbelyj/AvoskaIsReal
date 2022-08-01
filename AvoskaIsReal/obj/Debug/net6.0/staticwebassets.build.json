@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aj6diNgYYeaQ0Vo7uad8hGwR6rIosQuWn8NMhTfJpIQ=",
+  "Hash": "Ww2452ZANeiNpti9KHMGbo0LaXL+kLnzOJ8y3Js/8cc=",
   "Source": "AvoskaIsReal",
   "BasePath": "_content/AvoskaIsReal",
   "Mode": "Default",
@@ -576,6 +576,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fonts\\Sehnsucht Font.ttf"
+    },
+    {
+      "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\images\\2-1-1536x922.jpg",
+      "SourceId": "AvoskaIsReal",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\",
+      "BasePath": "_content/AvoskaIsReal",
+      "RelativePath": "images/2-1-1536x922.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\2-1-1536x922.jpg"
     },
     {
       "Identity": "C:\\Users\\User\\source\\repos\\AvoskaIsReal\\AvoskaIsReal\\wwwroot\\images\\biomes.jpg",

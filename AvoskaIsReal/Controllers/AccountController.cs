@@ -50,6 +50,7 @@ namespace AvoskaIsReal.Controllers
             return View(model);
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOut()
         {

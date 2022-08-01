@@ -47,8 +47,6 @@ namespace AvoskaIsReal.Controllers
             return Unauthorized();
         }
 
-        
-
         public async Task<IActionResult> Edit(string? userId = null)
         {
             User user;
@@ -129,6 +127,37 @@ namespace AvoskaIsReal.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             throw new NotImplementedException();
+        }
+
+        // Изменение пароля текущего пользователя
+        [Authorize]
+        public IActionResult ChangePassword()
+        {
+            return View(new ChangePasswordViewModel() { });
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = await _userManager.GetUserAsync(User);
+
+                IdentityResult res = await _userManager.ChangePasswordAsync(user, model.OldPassword,
+                    model.NewPassword);
+                if (res.Succeeded)
+                {
+                    return RedirectToAction("Edit", "Users");
+                } else
+                {
+                    foreach (var error in res.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
+            }
+            return View(model);
         }
     }
 }

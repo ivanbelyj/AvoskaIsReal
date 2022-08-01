@@ -15,7 +15,8 @@
             <input asp-for="Email" type="email" />
         </div>
         <div class="form__item form__padding-bottom">
-            <a class="link">Изменить пароль</a>
+            <a class="link" asp-area="" asp-controller="Users" asp-action="ChangePassword">
+                Изменить пароль</a>
         </div>
         <div class="form__item">
             <label asp-for="Career" class="form__label">Карьера</label>

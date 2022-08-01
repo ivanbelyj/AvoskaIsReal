@@ -1,19 +1,17 @@
 .inline-button {
+    display: inline-block;
   padding: 0.5em 1em;
   border: none;
   outline: none;
   cursor: pointer;
 
+  font-size: 1rem;
   transition: background-color 200ms, color 200ms;
 }
 
 .inline-button_brown {
   background-color: var(--brown);
   color: var(--light);
-}
-
-.form__upload-button {
-  display: inline-block;
 }
 
 .inline-button_brown:hover {

@@ -45,10 +45,11 @@
                 asp-action="Edit">Редактировать профиль</a>
         </div>
 
-        <div class="user-info__field">
-            <a class="link" asp-controller="Account"
-                asp-action="LogOut">Выйти из аккаунта</a>
-        </div>
+        <form class="user-info__field" asp-area="" asp-controller="Account" asp-action="LogOut"
+            method="post">
+            <button class="inline-button inline-button_brown" type="submit">
+                Выйти из аккаунта</button>
+        </form>
     }
     
 </main>
