@@ -1,9 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AvoskaIsReal.Domain;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AvoskaIsReal.Controllers
 {
     public class ArticlesController : Controller
     {
+        private DataManager _dataManager;
+        public ArticlesController(DataManager dataManager)
+        {
+            _dataManager = dataManager;
+        }
 
         public IActionResult Index(string id)
         {
@@ -11,14 +17,12 @@ namespace AvoskaIsReal.Controllers
             {
                 return View();
             }
-            return id == "id" ? View("Show") : Content("");
+            return id == "id" ? View("Show") : NotFound();
         }
 
         public IActionResult AllAboutAvoska()
         {
-            return View();
+            return View(_dataManager.TextFields.GetTextFieldByCodeWord("AllAboutAvoska"));
         }
-
-
     }
 }

@@ -1,22 +1,39 @@
-﻿<main class="background_light page padding-horizontal">
-    <h2 class="title_2 brown-dark-color">Редактировать - [имя страницы]</h2>
+﻿@using AvoskaIsReal.Domain.Entities
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model TextField
+
+<main class="background_light page padding-horizontal">
+    <h2 class="title_2 brown-dark-color">Редактировать - @Model.Title</h2>
     <form class="form" method="post" name="article-form">
-        <div class="form__item form__ck-editor form__padding-bottom">
-            <!--Здесь будет CK editor-->
-        </div>
+        <div asp-validation-summary="All"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="DateAdded" />
+        <input type="hidden" asp-for="CodeWord" />
         <div class="form__item">
-            <label class="form__label">
-                Meta keywords<span class="info-hint"
-                                   data-info-hint="Ключевые слова, которые будут использованы поисковой системой">?</span>
-            </label>
-            <input type="text" value="Авоська, доказательства, факты" />
+            <label class="form__label" asp-for="Title"></label>
+            <input type="text" asp-for="Title"/>
         </div>
         <div class="form__item form__padding-bottom">
-            <label class="form__label">
-                Meta description<span class="info-hint"
-                                      data-info-hint="Небольшое описание статьи, которое будет использовано поисковой системой">?</span>
+            <label class="form__label" asp-for="Text">
+                Содержание страницы
             </label>
-            <textarea>Здесь вводится небольшое описание</textarea>
+            <!--Todo: CK editor-->
+            <textarea class="form__ck-editor" asp-for="Text"></textarea>
+        </div>
+        <div class="form__item">
+            <label class="form__label" asp-for="MetaKeywords">
+                Meta keywords
+                <span class="info-hint" data-info-hint="Ключевые слова, которые будут использованы поисковой системой. Указываются через запятую">
+                    ?</span>
+            </label>
+            <input type="text" asp-for="MetaKeywords"/>
+        </div>
+        <div class="form__item form__padding-bottom">
+            <label class="form__label" asp-for="MetaDescription">
+                Meta description<span class="info-hint"
+                    data-info-hint="Небольшое описание статьи, которое будет использовано поисковой системой">?</span>
+            </label>
+            <textarea asp-for="MetaDescription"></textarea>
         </div>
 
         <div class="form__item">

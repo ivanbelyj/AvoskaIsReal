@@ -51,8 +51,6 @@ input[type="file"] {
 
 .form__ck-editor {
   min-height: 24em;
-  background-color: var(--gray);
-  background-clip: content-box;
 }
 
 .form__upload-button {

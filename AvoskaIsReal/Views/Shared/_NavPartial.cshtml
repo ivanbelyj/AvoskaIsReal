@@ -1,4 +1,5 @@
-﻿<nav class="nav-panel nav-panel_closed background_dark padding-horizontal">
+﻿@using System.Security.Claims
+<nav class="nav-panel nav-panel_closed background_dark padding-horizontal">
     <div class="nav-panel__section">
         <ul class="links-list nav-panel__links-list">
             <li>
@@ -36,11 +37,25 @@
             </ul>
         </div>
     }
-    <div class="nav-panel__section">
-        <div class="nav-panel__hor-line"></div>
-        <ul class="links-list nav-panel__links-list">
-            <li><a class="link" asp-area="admin" asp-controller="Users" asp-action="Index">Управление аккаунтами</a></li>
-            <li><a class="link" asp-area="admin" asp-controller="TextFields" asp-action="Index">Управление контентом страниц</a></li>
-        </ul>
-    </div>
+    @{
+        // Меню админа
+        /*var roles = User.Claims;
+        <ul>
+            @foreach (var role in roles)
+            {
+                <li>@role</li>
+            }
+        </ul>*/
+        var roles = User.FindAll(ClaimsIdentity.DefaultRoleClaimType);
+        if (roles.Any(role => role.Value == "admin"))
+        {
+            <div class="nav-panel__section">
+                <div class="nav-panel__hor-line"></div>
+                <ul class="links-list nav-panel__links-list">
+                    <li><a class="link" asp-area="admin" asp-controller="Users" asp-action="Index">Управление аккаунтами</a></li>
+                    <li><a class="link" asp-area="admin" asp-controller="TextFields" asp-action="Index">Управление контентом страниц</a></li>
+                </ul>
+            </div>
+        }
+    }
 </nav>

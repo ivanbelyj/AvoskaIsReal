@@ -1,16 +1,25 @@
-﻿<main class="background_light page padding-horizontal users-control-page">
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<main class="background_light page padding-horizontal users-control-page">
     <h2 class="title_2 brown-dark-color">Страницы сайта</h2>
     <ul class="links-list entities-list">
         <li>
-            <a href="#" class="link entities-list__entity-title">Главная</a>|<a href="#"
-                                                                                class="link">редакт.</a>
+            <a asp-area="" asp-controller="Home" asp-action="Index"
+                class="link entities-list__entity-title">Главная</a>
+            |<a asp-area="admin" asp-controller="TextFields"
+                asp-action="Edit" asp-route-codeWord="Index" class="link">
+                редакт.</a>
         </li>
         <li>
-            <a href="#" class="link entities-list__entity-title">Контакты</a>|<a href="#"
-                                                                                 class="link">редакт.</a>
+            <a asp-area="" asp-controller="Home" asp-action="Contact"
+                class="link entities-list__entity-title">Контакты</a>
+            |<a asp-area="admin" asp-controller="TextFields" asp-action="Edit"
+                asp-route-codeWord="Contact" class="link">редакт.</a>
         </li>
         <li>
-            <a href="#" class="link entities-list__entity-title">Все об Авоське</a>|<a href="#" class="link">редакт.</a>
+            <a asp-area="" asp-controller="Articles" asp-action="AllAboutAvoska"
+                class="link entities-list__entity-title">Все об Авоське</a>
+            |<a asp-area="admin" asp-controller="TextFields" asp-action="Edit"
+                asp-route-codeWord="AllAboutAvoska" class="link">редакт.</a>
         </li>
     </ul>
 </main>

@@ -5,13 +5,12 @@ namespace AvoskaIsReal.Domain.Entities
     {
         [Required(ErrorMessage = "Заполните название статьи")]
         [Display(Name = "Название статьи")]
-        public string Title { get; set; }
+        public override string Title { get; set; }
+
+        [Display(Name = "Содержание статьи")]
+        public override string Text { get; set; }
 
         [Display(Name = "Краткое описание статьи")]
         public string? SubTitle { get; set; }
-
-        [Display(Name = "Полный текст статьи")]
-        public string? Text { get; set; }
-
     }
 }

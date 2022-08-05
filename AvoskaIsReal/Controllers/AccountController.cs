@@ -37,7 +37,6 @@ namespace AvoskaIsReal.Controllers
                 if (user != null)
                 {
                     await _signInManager.SignOutAsync();
-                    // Todo: remember me не работает
                     Microsoft.AspNetCore.Identity.SignInResult res = await _signInManager
                         .PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (res.Succeeded)

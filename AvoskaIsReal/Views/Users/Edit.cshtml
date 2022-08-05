@@ -30,6 +30,8 @@
             <label asp-for="Contacts" class="form__label">Контакты</label>
             <textarea asp-for="Contacts"></textarea>
         </div>
+
+        @*Todo: если фото не выбрано, то остается прежний аватар*@
         <div class="form__item">
             <label asp-for="AvatarUrl" class="form__label">Фото профиля</label>
             <label class="inline-button inline-button_brown form__upload-button form__label"

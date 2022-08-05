@@ -1,3 +1,9 @@
 ﻿@{
     Layout = "_Layout";
+    if (Model is TextField || Model is Article)
+    {
+        ViewBag.MetaTitle = Model.Title;
+        ViewBag.MetaKeywords = Model.MetaKeywords;
+        ViewBag.MetaDescription = Model.MetaDescription;
+    }
 }
