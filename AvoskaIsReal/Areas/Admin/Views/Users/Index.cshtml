@@ -1,29 +1,21 @@
-﻿<main class="background_light page padding-horizontal users-control-page">
+﻿@model IEnumerable<User>
+
+<main class="background_light page padding-horizontal users-control-page">
     <h2 class="title_2 brown-dark-color">Пользователи</h2>
     <ul class="links-list entities-list">
-        <li>
-            <a href="#" class="link entities-list__entity-title">
-                Пользователь с очень длинным именем
-            </a>
-            |<a href="#" class="link">редакт.</a>|<a href="#"
-                                                     class="link text_dangerous">
-                удалить
-            </a>
-        </li>
-        <li>
-            <a href="#" class="link entities-list__entity-title">admin1</a>
-            |<a href="#"
-                class="link">редакт.</a>|<a href="#" class="link text_dangerous">
-                удалить
-            </a>
-        </li>
-        <li>
-            <a href="#" class="link entities-list__entity-title">admin1</a>
-            |<a href="#"
-                class="link">редакт.</a>|<a href="#" class="link text_dangerous">
-                удалить
-            </a>
-        </li>
+        @foreach (User user in Model)
+        {
+            <li>
+                <a asp-area="" asp-controller="Users" asp-route-id="@user.Id"
+                    asp-action="Index" class="link entities-list__entity-title">
+                    @user.UserName</a>
+                |<a asp-area="" asp-controller="Users" asp-action="Edit"
+                    asp-route-id="@user.Id" class="link">редакт.</a>
+                |<a asp-area="" asp-controller="Users" asp-action="Delete"
+                    asp-route-id="@user.Id" class="link text_dangerous">удалить</a>
+            </li>
+        }
     </ul>
-    <a href="#" class="link link_last">Создать аккаунт</a>
+    <a asp-area="admin" asp-controller="Users" asp-action="Create"
+        class="link link_last">Создать аккаунт</a>
 </main>

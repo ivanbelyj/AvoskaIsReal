@@ -1,4 +1,5 @@
-﻿@model AccountViewModel
+﻿@using System.Security.Claims
+@model ShowAccountViewModel
 @{
     // Todo: ViewBag.defaultAvatarUrl
     string avatarUrl = Model.AvatarUrl ?? ViewBag.defaultAvatarUrl;
@@ -38,13 +39,16 @@
             </div>
         }
     </div>
-    @if (User.Identity != null && User.Identity.IsAuthenticated)
+
+    @if (ViewBag.showEditLink)
     {
         <div class="user-info__field">
-            <a class="link link_last" asp-controller="Users"
-                asp-action="Edit">Редактировать профиль</a>
+            <a class="link link_last" asp-area="" asp-controller="Users"
+                asp-action="Edit" asp-route-id="@Model.Id">Редактировать профиль</a>
         </div>
-
+    }
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
         <form class="user-info__field" asp-area="" asp-controller="Account" asp-action="LogOut"
             method="post">
             <button class="inline-button inline-button_brown" type="submit">

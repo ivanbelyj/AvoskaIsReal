@@ -1,7 +1,8 @@
 ﻿namespace AvoskaIsReal.Models
 {
-    public class AccountViewModel
+    public class ShowAccountViewModel
     {
+        public string Id { get; set; }
         public string Login { get; set; }
         public string? Career { get; set; }
         public string? About { get; set; }

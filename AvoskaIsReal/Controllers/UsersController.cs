@@ -11,50 +11,87 @@ namespace AvoskaIsReal.Controllers
     {
         private UserManager<User> _userManager;
         private IWebHostEnvironment _webHostEnvironment;
-        public UsersController(UserManager<User> userManager, IWebHostEnvironment environment)
+        public UsersController(UserManager<User> userManager,
+            IWebHostEnvironment environment)
         {
             _userManager = userManager;
             _webHostEnvironment = environment;
+        }
+
+        // Если пользователь изменяет свой аккаунт,
+        // либо он авторизован на редактирование чужого
+        // (админ, либо владелец, если требуется редактировать админа)
+        public async Task<bool> IsAllowedToEdit(User editor, User editing)
+        {
+            // Если пользователь изменяет свой аккаунт
+            if (editor.Id == editing.Id)
+                return true;
+
+            // Если админ хочет изменить обычного пользователя
+            bool isEditingAdmin = await _userManager.IsInRoleAsync(editing, "admin");
+            bool isEditorUserAdmin = await _userManager.IsInRoleAsync(editor,
+                "admin");
+
+            // Владельцу можно все
+            bool isCurrentUserOwner = await _userManager.IsInRoleAsync(editor,
+                "owner");
+            return isEditorUserAdmin && !isEditingAdmin || isCurrentUserOwner;
         }
 
         // Профиль пользователя
         [AllowAnonymous]
         public async Task<IActionResult> Index(string? id = null)
         {
-            User user;
-            if (id is null)
+            // Отображаемый пользователь
+            User? user = null;
+
+            // Если не дано id, но пользователь авторизован
+            if (id is null && User.Identity is not null && User.Identity.IsAuthenticated)
             {
-                // По умолчанию - профиль текущего аутентифицированного пользователя
                 user = await _userManager.GetUserAsync(User);
             }
-            else
+            // Иначе пользователь дан по id
+            else if (id is not null)
             {
                 user = await _userManager.FindByIdAsync(id);
             }
-            if (user != null)
+            // Если пользователь для отображения так и не нашелся, ошибка
+            if (user == null)
+                return NotFound();
+            // Иначе пользователь определен
+
+            // Определить, нужно ли отображать ссылку на редактирование пользователя.
+            bool showEditLink = false;
+
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser is not null)
             {
-                // Todo: фото профиля по умолчанию
-                AccountViewModel model = new AccountViewModel()
-                {
-                    Login = user.UserName,
-                    About = user.About,
-                    Career = user.Career,
-                    Contacts = user.Contacts,
-                    AvatarUrl = user.AvatarUrl
-                };
-                return View(model);
+                showEditLink = await IsAllowedToEdit(currentUser, user);
             }
-            return Unauthorized();
+
+            ViewBag.showEditLink = showEditLink;
+
+            // Todo: фото профиля по умолчанию
+            ShowAccountViewModel model = new ShowAccountViewModel()
+            {
+                Id = user.Id,
+                Login = user.UserName,
+                About = user.About,
+                Career = user.Career,
+                Contacts = user.Contacts,
+                AvatarUrl = user.AvatarUrl
+            };
+            return View(model);
         }
 
-        public async Task<IActionResult> Edit(string? userId = null)
+        public async Task<IActionResult> Edit(string? id = null)
         {
             User user;
             // Если пользователь не задан, значит, редактируется текущий
-            if (userId is null)
+            if (id is null)
                 user = await _userManager.GetUserAsync(User);
             else
-                user = await _userManager.FindByIdAsync(userId);
+                user = await _userManager.FindByIdAsync(id);
 
             if (user is not null)
             {
@@ -82,12 +119,18 @@ namespace AvoskaIsReal.Controllers
         public async Task<IActionResult> Edit(EditUserViewModel model, IFormFile avatarFile,
             string? returnUrl = null)
         {
+            User user = await _userManager.FindByIdAsync(model.Id);
+            if (user is null)
+                return NotFound();
+            User currentUser = await _userManager.GetUserAsync(User);
+            if (currentUser is null)
+                return Unauthorized();
+
+            if (!await IsAllowedToEdit(currentUser, user))
+                return Unauthorized();
+
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
-                if (user == null)
-                    return NotFound();
-
                 user.About = model.About;
                 user.Career = model.Career;
                 user.Contacts = model.Contacts;

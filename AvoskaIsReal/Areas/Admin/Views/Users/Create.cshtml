@@ -1,0 +1,29 @@
+﻿@model CreateUserViewModel
+
+<main class="background_light page padding-horizontal">
+    <h2 class="title_2">Создать аккаунт</h2>
+    <form class="form" method="post" name="user-form" enctype="multipart/form-data"
+        asp-area="admin" asp-controller="Users" asp-action="Create">
+        <div asp-validation-summary="All"></div>
+        <div class="form__item">
+            <label asp-for="Login" class="form__label">Логин</label>
+            <input asp-for="Login" type="text" />
+        </div>
+        <div class="form__item">
+            <label asp-for="Email" class="form__label">Email</label>
+            <input asp-for="Email" type="email" />
+        </div>
+        <div class="form__item">
+            <label asp-for="Password" class="form__label">Пароль</label>
+            <input asp-for="Password" type="password" />
+        </div>
+        <div class="form__item">
+            <label asp-for="ConfirmPassword" class="form__label">Повторите пароль</label>
+            <input asp-for="ConfirmPassword" type="password" />
+        </div>
+
+        <div class="form__item">
+            <button class="button form__submit" type="submit">Создать</button>
+        </div>
+    </form>
+</main>
