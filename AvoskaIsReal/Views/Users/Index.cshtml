@@ -3,6 +3,12 @@
 @{
     // Todo: ViewBag.defaultAvatarUrl
     string avatarUrl = Model.AvatarUrl ?? ViewBag.defaultAvatarUrl;
+
+    if (ViewBag.deleteReturnUrl is null)
+        ViewBag.deleteReturnUrl = "~/Home/Index";
+
+    if (ViewBag.showLogOutButton is null)
+        ViewBag.showLogOutButton = false;
 }
 <main class="background_light page padding-horizontal">
     <h2 class="title_2">
@@ -44,10 +50,12 @@
     {
         <div class="user-info__field">
             <a class="link link_last" asp-area="" asp-controller="Users"
-                asp-action="Edit" asp-route-id="@Model.Id">Редактировать профиль</a>
+                asp-action="Edit" asp-route-id="@Model.Id"
+                asp-route-returnUrl="@ViewBag.deleteReturnUrl">
+                    Редактировать профиль</a>
         </div>
     }
-    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    @if (ViewBag.showLogOutButton)
     {
         <form class="user-info__field" asp-area="" asp-controller="Account" asp-action="LogOut"
             method="post">

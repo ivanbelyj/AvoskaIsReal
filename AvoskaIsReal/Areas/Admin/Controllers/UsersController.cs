@@ -46,8 +46,10 @@ namespace AvoskaIsReal.Areas.Admin.Controllers
                             ModelState.AddModelError("", error.Description);
                         }
                     }
+                } else
+                {
+                    ModelState.AddModelError("", "Пароли не совпадают.");
                 }
-                ModelState.AddModelError("", "Пароли не совпадают.");
             }
             return View(model);
         }

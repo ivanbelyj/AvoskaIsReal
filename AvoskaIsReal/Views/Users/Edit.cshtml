@@ -1,5 +1,13 @@
 ﻿@model EditUserViewModel
 
+@{
+    if (ViewBag.deleteReturnUrl is null)
+        ViewBag.deleteReturnUrl = "~/Home/Index";
+
+    if (ViewBag.changePasswordReturnUrl is null)
+        ViewBag.changePasswordReturnUrl = $"~/Users/Index?id={Model.Id}";
+}
+
 <main class="background_light page padding-horizontal">
     <h2 class="title_2">Редактировать профиль</h2>
     <form class="form" method="post" name="user-form" enctype="multipart/form-data"
@@ -14,10 +22,16 @@
             <label asp-for="Email" class="form__label">Email</label>
             <input asp-for="Email" type="email" />
         </div>
-        <div class="form__item form__padding-bottom">
-            <a class="link" asp-area="" asp-controller="Users" asp-action="ChangePassword">
-                Изменить пароль</a>
-        </div>
+        @if (ViewBag.showEditPassword ?? false)
+        {
+            <div class="form__item form__padding-bottom">
+                <a class="link" asp-area="" asp-controller="Users"
+                    asp-action="ChangePassword" asp-route-userId="@Model.Id"
+                    asp-route-returnUrl="@ViewBag.changePasswordReturnUrl">
+                    Изменить пароль</a>
+            </div>
+        }
+        
         <div class="form__item">
             <label asp-for="Career" class="form__label">Карьера</label>
             <textarea asp-for="Career"></textarea>
@@ -47,8 +61,11 @@
         <div class="form__item">
             <button class="button form__submit" type="submit">Сохранить</button>
         </div>
+
         <div class="form__item">
-            <a class="link">Удалить аккаунт</a>
+            <a asp-area="" asp-controller="Users" asp-action="Delete"
+                asp-route-id="@Model.Id" asp-route-returnUrl="@ViewBag.deleteReturnUrl"
+                class="link">Удалить аккаунт</a>
         </div>
     </form>
 </main>

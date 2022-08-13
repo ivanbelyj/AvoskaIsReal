@@ -1,5 +1,9 @@
-﻿@{
+﻿@using System.Security.Claims
+@{
     Layout = "_Layout";
+
+    // Для представлений, в которых моделью выступают TextField и Article,
+    // вынесена общая логика
     if (Model is TextField || Model is Article)
     {
         ViewBag.MetaTitle = Model.Title;

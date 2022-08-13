@@ -41,7 +41,7 @@ namespace AvoskaIsReal.Controllers
                         .PasswordSignInAsync(user, model.Password, model.RememberMe, false);
                     if (res.Succeeded)
                     {
-                        return Redirect(returnUrl ?? "/");
+                        return Redirect(returnUrl ?? "~/Home/Index");
                     }
                 }
                 ModelState.AddModelError("", "Неверный email или пароль");

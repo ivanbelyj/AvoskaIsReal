@@ -1,4 +1,9 @@
 ﻿@using System.Security.Claims
+@{
+    // Установка id текущего пользователя для возможности ссылки на его
+    // профиль из NavBar
+    ViewBag.currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+}
 <nav class="nav-panel nav-panel_closed background_dark padding-horizontal">
     <div class="nav-panel__section">
         <ul class="links-list nav-panel__links-list">
@@ -30,7 +35,7 @@
         <div class="nav-panel__section">
             <div class="nav-panel__hor-line"></div>
             <ul class="links-list nav-panel__links-list">
-                <li><a class="link" asp-area="" asp-controller="Users" asp-action="Index">
+                <li><a class="link" asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="@ViewBag.currentUserId">
                     Ваш профиль</a></li>
                 <li><a class="link" asp-area="moderator" asp-controller="Articles" asp-action="List">
                     Управление статьями</a></li>
