@@ -1,5 +1,6 @@
 ﻿using AvoskaIsReal.Areas.Admin.Models;
 using AvoskaIsReal.Domain;
+using AvoskaIsReal.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,15 +10,17 @@ namespace AvoskaIsReal.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private UserManager<User> _userManager;
-        public UsersController(UserManager<User> userManager)
+        private AppUserRoleManager _appRoleManager;
+
+        public UsersController(UserManager<User> userManager, AppUserRoleManager appRoleManager)
         {
             _userManager = userManager;
+            _appRoleManager = appRoleManager;
         }
 
         public IActionResult Index()
         {
-            var users = _userManager.Users.ToList();
-            return View(users);
+            return View(_userManager.Users.ToList());
         }
 
         [HttpGet]
@@ -38,6 +41,10 @@ namespace AvoskaIsReal.Areas.Admin.Controllers
                         .CreateAsync(user, model.Password);
                     if (createRes.Succeeded)
                     {
+                        // Пользователь может быть как минимум модератором
+                        await _appRoleManager.SetRoleAsync(user,
+                            AppUserRoleManager.MODERATOR);
+
                         return RedirectToAction("Index");
                     } else
                     {

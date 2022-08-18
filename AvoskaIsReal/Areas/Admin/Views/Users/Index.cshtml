@@ -1,4 +1,8 @@
-﻿@model IEnumerable<User>
+﻿@using AvoskaIsReal.Service
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@inject AppUserRoleManager RoleManager
+@model IEnumerable<User>
 
 <main class="background_light page padding-horizontal users-control-page">
     <h2 class="title_2 brown-dark-color">Пользователи</h2>
@@ -10,14 +14,22 @@
                     asp-action="Index" class="link entities-list__entity-title"
                     asp-route-returnUrl="~/admin/Users/Index">
                         @user.UserName</a>
-                |<a asp-area="" asp-controller="Users" asp-action="Edit"
+                <span>|</span><a href="#" class="link entities-list__entity-title">
+                        @await RoleManager.GetRoleAsync(user)
+                    </a>
+                @if ((await AuthorizationService
+                    .AuthorizeAsync(User, user, "EditOrDeleteUserPolicy")).Succeeded)
+                {
+                    <span>|</span><a asp-area="" asp-controller="Users" asp-action="Edit"
                     asp-route-id="@user.Id" class="link"
                     asp-route-deleteReturnUrl="~/admin/Users/Index"
                     asp-route-changePasswordReturnUrl="~/admin/Users/Index/@user.Id">
                     редакт.</a>
-                |<a asp-area="" asp-controller="Users" asp-action="Delete"
-                    asp-route-id="@user.Id" class="link text_dangerous"
-                    asp-route-returnUrl="~/admin/Users/Index">удалить</a>
+
+                    <span>|</span><a asp-area="" asp-controller="Users" asp-action="Delete"
+                        asp-route-id="@user.Id" class="link text_dangerous"
+                        asp-route-returnUrl="~/admin/Users/Index">удалить</a>
+                 }
             </li>
         }
     </ul>

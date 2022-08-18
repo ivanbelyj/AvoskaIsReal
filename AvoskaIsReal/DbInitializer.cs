@@ -98,27 +98,8 @@ namespace AvoskaIsReal
             await HasRole(roleManager, "admin");
             await HasRole(roleManager, "owner");
 
-            // Create owner's account
-            string ownerName = configuration.GetSection("Project")["OwnerUserName"];
-            string ownerEmail = configuration.GetSection("Project")["OwnerEmail"];
-            string ownerPassword =
-                configuration.GetSection("Project")["OwnerInitialPassword"];
-            User owner = new User()
-            {
-                UserName = ownerName,
-                Email = ownerEmail,
-            };
-            IdentityResult createRes = await userManager.CreateAsync(owner, ownerPassword);
-            if (createRes.Succeeded)
-            {
-                await userManager.AddToRoleAsync(owner, "moderator");
-                await userManager.AddToRoleAsync(owner, "admin");
-                await userManager.AddToRoleAsync(owner, "owner");
-            }
-            else
-            {
-                // Todo: log error
-            }
+            await HasOwner(configuration, userManager);
+            
 
             // Add text fields
             TextField[] textFields = new TextField[]
@@ -158,6 +139,42 @@ namespace AvoskaIsReal
             }
         }
 
+        private static async Task HasOwner(IConfiguration configuration,
+            UserManager<User> userManager)
+        {
+            string ownerEmail = configuration.GetSection("Project")["OwnerEmail"];
+            // Если пользователь с указанным email уже существует, добавление не требуется
+            if ((await userManager.FindByEmailAsync(ownerEmail)) != null)
+            {
+                return;
+            }
 
+            string ownerName = configuration.GetSection("Project")["OwnerUserName"];
+            string ownerPassword =
+                configuration.GetSection("Project")["OwnerInitialPassword"];
+            User owner = new User()
+            {
+                UserName = ownerName,
+                Email = ownerEmail,
+            };
+            await CreateOwner(userManager, owner, ownerPassword);
+        }
+
+        private static async Task CreateOwner(UserManager<User> userManager, User user,
+            string userPassword)
+        {
+            IdentityResult createRes = await userManager.CreateAsync(user, userPassword);
+            if (createRes.Succeeded)
+            {
+                await userManager.AddToRoleAsync(user, "moderator");
+                await userManager.AddToRoleAsync(user, "admin");
+                await userManager.AddToRoleAsync(user, "owner");
+            }
+            else
+            {
+                // Todo: log error
+                throw new ApplicationException("Не удалось создать пользователя-владельца.");
+            }
+        }
     }
 }

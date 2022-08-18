@@ -9,5 +9,7 @@
         public string? About { get; set; }
         public string? Contacts { get; set; }
         public string? AvatarUrl { get; set; }
+
+        public string Role { get; set; }
     }
 }

@@ -1,4 +1,10 @@
-﻿@model EditUserViewModel
+﻿@using AvoskaIsReal.Domain
+@using AvoskaIsReal.Service
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject IAuthorizationService AuthorizationService
+@inject UserManager<User> UserManager
+@model EditUserViewModel
 
 @{
     if (ViewBag.deleteReturnUrl is null)
@@ -22,15 +28,42 @@
             <label asp-for="Email" class="form__label">Email</label>
             <input asp-for="Email" type="email" />
         </div>
-        @if (ViewBag.showEditPassword ?? false)
-        {
-            <div class="form__item form__padding-bottom">
-                <a class="link" asp-area="" asp-controller="Users"
-                    asp-action="ChangePassword" asp-route-userId="@Model.Id"
-                    asp-route-returnUrl="@ViewBag.changePasswordReturnUrl">
-                    Изменить пароль</a>
-            </div>
-        }
+        @* Todo: padding bottom применяется не во всех случаях *@
+        <div class="form__item form__padding-bottom">
+            <a class="link" asp-area="" asp-controller="Users"
+                asp-action="ChangePassword" asp-route-userId="@Model.Id"
+                asp-route-returnUrl="@ViewBag.changePasswordReturnUrl">
+                Изменить пароль</a>
+        </div>
+
+        <!-- Role -->
+        <div class="form__item">
+            <label asp-for="Role" class="form__label">Роль</label>
+            <select asp-for="Role" class="form__select" name="role">
+                @* Todo: если пользователь не авторизован, некоторые роли не должны
+                    отображаться в списке *@
+                @* Отображаются только те роли, на установку которых авторизован
+                    пользователь *@
+                @foreach (string role in new [] { "moderator", "admin", "owner" })
+                {
+                    string roleStr = role switch {
+                        "moderator" => "Модератор",
+                        "admin" => "Админ",
+                        "owner" => "Владелец",
+                        _ => "Неизвестная роль"
+                    };
+                    User user = await UserManager.FindByIdAsync(Model.Id);
+                    if ((await AuthorizationService.AuthorizeAsync(User, user,
+                        new ChangeRoleAuthorizationRequirement(role))).Succeeded)
+                    {
+                        <option value="@role">
+                            @roleStr
+                        </option>
+                    }
+                    
+                }
+            </select>
+        </div>
         
         <div class="form__item">
             <label asp-for="Career" class="form__label">Карьера</label>

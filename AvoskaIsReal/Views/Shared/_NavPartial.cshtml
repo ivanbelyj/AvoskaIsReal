@@ -1,8 +1,10 @@
-﻿@using System.Security.Claims
+﻿@inject IAuthorizationService AuthorizationService
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
 @{
     // Установка id текущего пользователя для возможности ссылки на его
     // профиль из NavBar
-    ViewBag.currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    string? currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 }
 <nav class="nav-panel nav-panel_closed background_dark padding-horizontal">
     <div class="nav-panel__section">
@@ -35,32 +37,21 @@
         <div class="nav-panel__section">
             <div class="nav-panel__hor-line"></div>
             <ul class="links-list nav-panel__links-list">
-                <li><a class="link" asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="@ViewBag.currentUserId">
+                <li><a class="link" asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="@currentUserId">
                     Ваш профиль</a></li>
                 <li><a class="link" asp-area="moderator" asp-controller="Articles" asp-action="List">
                     Управление статьями</a></li>
             </ul>
         </div>
     }
-    @{
-        // Меню админа
-        /*var roles = User.Claims;
-        <ul>
-            @foreach (var role in roles)
-            {
-                <li>@role</li>
-            }
-        </ul>*/
-        var roles = User.FindAll(ClaimsIdentity.DefaultRoleClaimType);
-        if (roles.Any(role => role.Value == "admin"))
-        {
-            <div class="nav-panel__section">
-                <div class="nav-panel__hor-line"></div>
-                <ul class="links-list nav-panel__links-list">
-                    <li><a class="link" asp-area="admin" asp-controller="Users" asp-action="Index">Управление аккаунтами</a></li>
-                    <li><a class="link" asp-area="admin" asp-controller="TextFields" asp-action="Index">Управление контентом страниц</a></li>
-                </ul>
-            </div>
-        }
+    @if ((await AuthorizationService.AuthorizeAsync(User, "AdminArea")).Succeeded)
+    {
+        <div class="nav-panel__section">
+            <div class="nav-panel__hor-line"></div>
+            <ul class="links-list nav-panel__links-list">
+                <li><a class="link" asp-area="admin" asp-controller="Users" asp-action="Index">Управление аккаунтами</a></li>
+                <li><a class="link" asp-area="admin" asp-controller="TextFields" asp-action="Index">Управление контентом страниц</a></li>
+            </ul>
+        </div>
     }
 </nav>

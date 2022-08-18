@@ -6,6 +6,7 @@ using AvoskaIsReal.Domain.Repositories.EntityFramework;
 using AvoskaIsReal;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AvoskaIsReal.Service;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<IArticlesRepository, EFArticlesRepository>();
 builder.Services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
 builder.Services.AddTransient<DataManager>();
+builder.Services.AddTransient<AppUserRoleManager>();
+builder.Services.AddScoped<IAuthorizationHandler, EditOrDeleteAuthorizationHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, ChangeRoleAuthorizationHandler>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -28,6 +32,10 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminArea", options => options.RequireRole("admin"));
     options.AddPolicy("ModeratorArea", options => options.RequireRole("moderator"));
+    options.AddPolicy("EditOrDeleteUserPolicy", options => options.Requirements
+        .Add(new EditOrDeleteRequirement()));
+    //options.AddPolicy("ChangeRolePolicy", options => options.Requirements
+    //    .Add(new ChangeRoleAuthorizationRequirement()));
 });
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
