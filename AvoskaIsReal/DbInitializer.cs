@@ -99,7 +99,10 @@ namespace AvoskaIsReal
             await HasRole(roleManager, "owner");
 
             await HasOwner(configuration, userManager);
-            
+
+            // TODO: убрать после тестов
+            await OwnerHasArticle(dataManager, userManager, configuration);
+
 
             // Add text fields
             TextField[] textFields = new TextField[]
@@ -123,6 +126,34 @@ namespace AvoskaIsReal
                 if (tf == null)
                     dataManager.TextFields.SaveTextField(textField);
             }
+        }
+
+        private static async Task OwnerHasArticle(DataManager dataManager,
+            UserManager<User> userManager, IConfiguration config)
+        {
+            if (dataManager.Articles.GetArticles().Count() > 0)
+                return;
+
+            string ownerEmail = config.GetSection("Project")["OwnerEmail"];
+            User author = await userManager.FindByEmailAsync(ownerEmail);
+            if (author is null)
+                throw new Exception("Невозможно создать статью: " +
+                    "не найден автор");  // TODO: logging
+
+            Article article = new Article()
+            {
+                Title = "Авоська уже здесь!",
+                SubTitle = "Авоську видели на Ленинградской",
+                MetaDescription = "Авоська уже здесь!",
+                MetaKeywords = "авоська, ужас, ленинградская, новости",
+                Text = "Недавно в городе Воронеж на улице Ленинградская видели" +
+                " Авоську. Есть ли пострадавшие, точно не известно. По словам "
+                + "очевидцев, Авоська лазила на мусорке и искала еду.",
+                // User = author,
+                UserId = author.Id,
+                TitleImageUrl = "nature.jpg"
+            };
+            dataManager.Articles.SaveArticle(article);
         }
 
         private static async Task HasRole(RoleManager<IdentityRole> roleManager,

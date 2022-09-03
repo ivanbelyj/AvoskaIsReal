@@ -1,4 +1,4 @@
-﻿@model TextField
+﻿@model IEnumerable<Article>
 
 <main class="background_light page">
     <h2 class="title_2 brown-dark-color padding-horizontal">
@@ -6,10 +6,15 @@
     </h2>
     <div class="limited-text padding-horizontal">
         <p class="limited-text__content brown-dark-color">
-            @Html.Raw(Model.Text)
+            @* Todo: передать во ViewBag TextField*@
+            @Html.Raw(ViewBag.TextField.Text)
         </p>
     </div>
 
-    @await Component.InvokeAsync("ArticleCards")
+    @* Todo: статьи из категории все об Авоське *@
+    @foreach (Article article in Model)
+    {
+        @await Component.InvokeAsync("ArticleCards", new { article = article });
+    }
 
 </main>

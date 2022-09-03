@@ -1,4 +1,5 @@
 ﻿using AvoskaIsReal.Domain;
+using AvoskaIsReal.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvoskaIsReal.Controllers
@@ -15,14 +16,22 @@ namespace AvoskaIsReal.Controllers
         {
             if (string.IsNullOrEmpty(id))
             {
-                return View();
+                // Todo: Выбрать статьи из категории "теории и доказательства"
+                return View(_dataManager.Articles.GetArticles()
+                    .Where(article => article.CategoryName == Article.CATEGORY_THEORIES)
+                    .ToList());
             }
             return id == "id" ? View("Show") : NotFound();
         }
 
         public IActionResult AllAboutAvoska()
         {
-            return View(_dataManager.TextFields.GetTextFieldByCodeWord("AllAboutAvoska"));
+            // Выбрать статьи из категории "все об авоська" и передать
+            ViewBag.textField = _dataManager.TextFields
+                .GetTextFieldByCodeWord("AllAboutAvoska");
+            return View(_dataManager.Articles.GetArticles()
+                .Where(article => article.CategoryName == Article.CATEGORY_ABOUT_AVOSKA)
+                .ToList());
         }
     }
 }

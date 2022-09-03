@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AvoskaIsReal.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace AvoskaIsReal.Domain
 {
@@ -8,5 +9,7 @@ namespace AvoskaIsReal.Domain
         public string? About { get; set; }
         public string? Contacts { get; set; }
         public string? AvatarUrl { get; set; }
+
+        // public List<Article> Articles { get; set; }
     }
 }

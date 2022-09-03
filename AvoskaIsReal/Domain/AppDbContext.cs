@@ -13,7 +13,17 @@ namespace AvoskaIsReal.Domain
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
-            
+
         }
+
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
+        //    builder.Entity<Article>()
+        //        .HasOne(x => x.User)
+        //        .WithMany(x => x.Articles)
+        //        .HasForeignKey(x => x.UserId)
+        //        .HasPrincipalKey(user => user.Id);
+        //}
     }
 }

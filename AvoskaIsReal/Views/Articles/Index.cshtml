@@ -1,9 +1,13 @@
-﻿<main class="background_light page">
+﻿@model IEnumerable<Article>
+<main class="background_light page">
     <h2 class="title_2 brown-dark-color padding-horizontal">
         Теории и доказательства
     </h2>
     <!--Todo: возможность добавить текст и мета теги на странице-->
     
-    @await Component.InvokeAsync("ArticleCards")
-    
+    @* Todo: статьи из категории Теории и доказательства *@
+    @foreach (Article article in Model)
+    {
+        @await Component.InvokeAsync("ArticleCards", new { article = article });
+    }
 </main>
