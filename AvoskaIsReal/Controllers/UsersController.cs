@@ -79,6 +79,7 @@ namespace AvoskaIsReal.Controllers
                 Contacts = user.Contacts,
                 AvatarUrl = user.AvatarUrl
             };
+
             return View(model);
         }
 
@@ -133,7 +134,8 @@ namespace AvoskaIsReal.Controllers
                     Role = role
                 };
                 return View(model);
-            } else
+            }
+            else
             {
                 return new ChallengeResult();
             }
@@ -200,18 +202,22 @@ namespace AvoskaIsReal.Controllers
                                 return Redirect(deleteReturnUrl);
                             else
                                 return RedirectToAction("Index", new { id = user.Id });
-                        } else {
+                        }
+                        else
+                        {
                             foreach (IdentityError error in setRoleRes.Errors)
                                 ModelState.AddModelError("", error.Description);
                         }
-                    } else
+                    }
+                    else
                     {
                         foreach (var error in res.Errors)
                             ModelState.AddModelError("", error.Description);
                     }
                 }
                 return View(model);
-            } else
+            }
+            else
             {
                 return new ChallengeResult();
             }
@@ -224,7 +230,8 @@ namespace AvoskaIsReal.Controllers
                 return NotFound();
 
             if ((await _authorizationService.AuthorizeAsync(User, user,
-                "EditOrDeleteUserPolicy")).Succeeded) {
+                "EditOrDeleteUserPolicy")).Succeeded)
+            {
                 User currentUser = await _userManager.GetUserAsync(User);
                 // Если пользователь удаляет сам себя, то нужно выйти из аккаунта
                 if (currentUser.Id == id)
@@ -235,7 +242,8 @@ namespace AvoskaIsReal.Controllers
                     return Redirect(returnUrl);
                 else
                     return RedirectToAction("Index");
-            } else
+            }
+            else
             {
                 return new ChallengeResult();
             }
@@ -265,12 +273,13 @@ namespace AvoskaIsReal.Controllers
                     UserId = userId,
                     ReturnUrl = returnUrl
                 });
-            } else
+            }
+            else
             {
                 return new ChallengeResult();
             }
         }
-        
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -308,7 +317,8 @@ namespace AvoskaIsReal.Controllers
                     }
                 }
                 return View(model);
-            } else
+            }
+            else
             {
                 return new ChallengeResult();
             }

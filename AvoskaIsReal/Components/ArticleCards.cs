@@ -33,7 +33,8 @@ namespace AvoskaIsReal.Components
                 Text = article.Text,
                 TitleImageUrl = article.TitleImageUrl,
                 AuthorsName = author.UserName,
-                AuthorsAvatarUrl = author.AvatarUrl
+                AuthorsAvatarUrl = author.AvatarUrl,
+                AuthorsId = author.Id
             };
             return View(model);
         }

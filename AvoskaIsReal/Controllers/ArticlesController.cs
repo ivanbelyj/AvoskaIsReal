@@ -1,5 +1,7 @@
 ﻿using AvoskaIsReal.Domain;
 using AvoskaIsReal.Domain.Entities;
+using AvoskaIsReal.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AvoskaIsReal.Controllers
@@ -7,21 +9,54 @@ namespace AvoskaIsReal.Controllers
     public class ArticlesController : Controller
     {
         private DataManager _dataManager;
-        public ArticlesController(DataManager dataManager)
+        private UserManager<User> _userManager;
+        public ArticlesController(DataManager dataManager,
+            UserManager<User> userManager)
         {
             _dataManager = dataManager;
+            _userManager = userManager;
         }
 
-        public IActionResult Index(string id)
+        // Todo: meta tags статьи
+        public async Task<IActionResult> Index(Guid id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (id == default(Guid))
             {
                 // Todo: Выбрать статьи из категории "теории и доказательства"
                 return View(_dataManager.Articles.GetArticles()
                     .Where(article => article.CategoryName == Article.CATEGORY_THEORIES)
                     .ToList());
             }
-            return id == "id" ? View("Show") : NotFound();
+            // return id == "id" ? View("Show") : NotFound();
+            Article? article = _dataManager.Articles.GetArticleById(id);
+            if (article is not null)
+            {
+                User author = await _userManager.FindByIdAsync(article.UserId);
+                // Todo: что, если аккаунт удален?
+
+                ShowArticleViewModel model = new ShowArticleViewModel()
+                {
+                    Id = id,
+                    Date = article.DateAdded,
+                    Title = article.Title,
+                    SubTitle = article.SubTitle,
+                    Text = article.Text,
+                    TitleImageUrl = article.TitleImageUrl,
+                    AuthorsName = author.UserName,
+                    AuthorsAvatarUrl = author.AvatarUrl,
+                    AuthorsId = author.Id
+                };
+
+                // Метатеги
+                ViewBag.MetaTitle = article.Title;
+                ViewBag.MetaSubTitle = article.SubTitle;
+                ViewBag.MetaKeywords = article.MetaKeywords;
+                return View("Show", model);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         public IActionResult AllAboutAvoska()

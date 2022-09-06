@@ -11,7 +11,8 @@
         <h2 class="title_2 article__title padding-horizontal">@Model.Title</h2>
         @if (hasTitleImage)
         {
-            <div class="article__title-image blur-back-image padding-horizontal">
+            <div class="article__title-image blur-back-image padding-horizontal"
+                style="background-image:url('/images/@Model.TitleImageUrl')">
                 <img class="blur-back-image__image" src="~/images/@Model.TitleImageUrl" />
             </div>
         }
@@ -21,9 +22,14 @@
         </div>
         <div class="article__info padding-horizontal">
             <!--Todo: ссылка на аккаунт автора-->
-            <a><img class="article__avatar" src="~/images/@Model.AuthorsAvatarUrl" /></a>
+            <a asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="@Model.AuthorsId">
+                <img class="article__avatar" src="~/images/@Model.AuthorsAvatarUrl" />
+            </a>
             <div class="article__author-and-date">
-                <a class="article__author link">@Model.AuthorsName</a>
+                <a asp-area="" asp-controller="Users" asp-action="Index"
+                    asp-route-id="@Model.AuthorsId" class="article__author link">
+                    @Model.AuthorsName
+                </a>
                 <div class="article__date">@Model.Date</div>
             </div>
         </div>
