@@ -1,53 +1,60 @@
-﻿<main class="background_light page padding-horizontal">
+﻿@model Article
+<main class="background_light page padding-horizontal">
     <h2 class="title_2 brown-dark-color">Редактировать статью</h2>
+    <div asp-validation-summary="All"></div>
     <form class="form" method="post" name="article-form">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="UserId" />
         <div class="form__item">
-            <label class="form__label">Заголовок статьи</label>
-            <input type="text" value="Семья Авоськи" />
+            <label class="form__label" asp-for="Title">Заголовок</label>
+            <input type="text" asp-for="Title" />
         </div>
         <div class="form__item">
-            <label class="form__label">Краткое описание</label>
-            <textarea>
-Чтобы лучше понять саму Авоську, стоит разузнать что-то про ее семью</textarea>
+            <label class="form__label" asp-for="SubTitle">Краткое описание (подзаголовок)</label>
+            <textarea asp-for="SubTitle"></textarea>
         </div>
         <div class="form__item form__padding-bottom">
-            <label class="form__label">Категория</label>
-            <select class="form__select">
-                <option value="Доказательства и теории">
+            <label class="form__label" asp-for=CategoryName>Категория</label>
+            <select class="form__select" asp-for="CategoryName">
+                @* Todo: правильное значение категории*@
+                <option value="@Article.CATEGORY_THEORIES">
                     Доказательства и теории
                 </option>
-                <option value="Все об Авоське">Все об Авоське</option>
+                <option value="@Article.CATEGORY_ABOUT_AVOSKA">Все об Авоське</option>
             </select>
         </div>
         <div class="form__item form__ck-editor form__padding-bottom">
-            <!--Здесь будет CK editor-->
+            <!--Todo: CK editor и привязка свойства Text-->
+            <textarea asp-for="Text"></textarea>
         </div>
         <div class="form__item">
-            <label class="form__label">
+            <label class="form__label" asp-for="MetaKeywords">
                 Meta keywords<span class="info-hint"
                                    data-info-hint="Ключевые слова, которые будут использованы поисковой системой">?</span>
             </label>
-            <input type="text" value="Авоська, доказательства, факты" />
+            <input type="text" asp-for="MetaKeywords" />
         </div>
         <div class="form__item form__padding-bottom">
-            <label class="form__label">
+            <label class="form__label" asp-for=MetaDescription>
                 Meta description<span class="info-hint"
                                       data-info-hint="Небольшое описание статьи, которое будет использовано поисковой системой">?</span>
             </label>
-            <textarea>Здесь вводится небольшое описание</textarea>
+            <textarea asp-for="MetaDescription"></textarea>
         </div>
+        <!--Todo: Изменение изображения статьи-->
         <div class="form__item">
             <label class="form__label">Изображение статьи</label>
-            <label class="inline-button inline-button_brown form__upload-button"
-                   for="title-image-upload"
-                   class="form__label">Выбрать файл</label>
+            <label class="inline-button inline-button_brown form__upload-button form__label"
+                   for="title-image-upload">Выбрать файл</label>
             <input id="title-image-upload" type="file" />
         </div>
-        <div class="form__item form__padding-bottom">
-            <label class="form__label">Текущее изображение статьи</label>
-            <img class="form__current-user-image" src="images/pic01.jpg" />
-        </div>
-
+        @if (Model.TitleImageUrl is not null)
+        {
+            <div class="form__item form__padding-bottom">
+                <label class="form__label">Текущее изображение статьи</label>
+                <img class="form__current-user-image" src="~/images/@Model.TitleImageUrl" />
+            </div>
+        }
         <div class="form__item">
             <button class="button form__submit" type="submit">Сохранить</button>
         </div>

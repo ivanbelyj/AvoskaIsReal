@@ -23,7 +23,7 @@ namespace AvoskaIsReal.Domain.Entities
 
         [Display(Name = "SEO метатег description")]
         public string? MetaDescription { get; set; }
-        
+
         [DataType(DataType.DateTime)]
         public DateTime DateAdded { get; set; }
     }
