@@ -1,6 +1,14 @@
 ﻿@model Article
+@{
+    string title;
+    if (ViewBag.creatingNewArticle is not null && ViewBag.creatingNewArticle)
+    {
+        title = "Создать статью";
+    } else
+        title = "Редактировать статью";
+}
 <main class="background_light page padding-horizontal">
-    <h2 class="title_2 brown-dark-color">Редактировать статью</h2>
+    <h2 class="title_2 brown-dark-color">@title</h2>
     <div asp-validation-summary="All"></div>
     <form class="form" method="post" name="article-form">
         <input type="hidden" asp-for="Id" />
@@ -58,8 +66,13 @@
         <div class="form__item">
             <button class="button form__submit" type="submit">Сохранить</button>
         </div>
+
+        @* Todo: Показывать, только если имеет ли пользователь право
+        удалять статью *@
         <div class="form__item">
-            <a class="link" href="#">Удалить статью</a>
+            <a class="link" asp-area="moderator"
+                asp-controller="Articles" asp-action="Delete"
+                asp-route-id="@Model.Id">Удалить статью</a>
         </div>
     </form>
 </main>

@@ -13,7 +13,12 @@ namespace AvoskaIsReal.Domain.Repositories.EntityFramework
 
         public void DeleteArticle(Guid id)
         {
-            _appDbContext.Articles.Remove(new Article { Id = id });
+            Article? article = GetArticleById(id);
+
+            if (article is null)
+                return;
+            
+            _appDbContext.Articles.Remove(article);
             _appDbContext.SaveChanges();
         }
 

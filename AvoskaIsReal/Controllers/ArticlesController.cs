@@ -49,7 +49,7 @@ namespace AvoskaIsReal.Controllers
 
                 // Метатеги
                 ViewBag.MetaTitle = article.Title;
-                ViewBag.MetaSubTitle = article.SubTitle;
+                ViewBag.MetaDescription = article.MetaDescription;
                 ViewBag.MetaKeywords = article.MetaKeywords;
                 return View("Show", model);
             }
