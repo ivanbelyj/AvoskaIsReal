@@ -30,7 +30,6 @@ namespace AvoskaIsReal.Controllers
             if (article is not null)
             {
                 User? author = await _userManager.FindByIdAsync(article.UserId);
-                // Todo: что, если аккаунт удален?
 
                 ShowArticleViewModel model = new ShowArticleViewModel()
                 {

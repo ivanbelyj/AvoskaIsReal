@@ -89,7 +89,11 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
         private async Task<bool> IsAllowedToEditOrDeleteAsync(Article article)
         {
             User author = await _userManager.FindByIdAsync(article.UserId);
-            // Todo: что, если user - null, т.е. автора статьи уже нет?
+
+            // Если автор статьи уже удален, то он рассматривается как пользователь
+            // без любых прав
+            if (author is null)
+                author = new User();
 
             // Если пользователь имеет право изменять другого пользователя,
             // то также имеет право изменять его статьи.
@@ -97,6 +101,8 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
                    "EditOrDeleteUserPolicy")).Succeeded;
         }
 
+        // Todo: после удаления статьи, находясь до этого в AllArticles,
+        // возврат происходит в "Ваши статьи"
         public async Task<IActionResult> Delete(Guid id, string? returnUrl)
         {
             if (id == default(Guid))

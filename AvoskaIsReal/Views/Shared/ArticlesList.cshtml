@@ -22,7 +22,8 @@
                     asp-route-returnUrl="@returnUrl">редакт.</a>|
                 <a class="link text_dangerous"
                     asp-area="moderator" asp-controller="Articles" asp-action="Delete"
-                    asp-route-id="@article.Id">удалить</a>
+                    asp-route-id="@article.Id" asp-route-returnUrl="@returnUrl">
+                    удалить</a>
             </li>
         }
     </ul>
