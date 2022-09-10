@@ -15,7 +15,7 @@ namespace AvoskaIsReal.Service
             _userManager = userManager;
         }
 
-        // Todo: логика частично похожа на логику авторизации смены роли
+        // Логика частично похожа на логику авторизации смены роли
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context,
             EditOrDeleteRequirement requirement, User user)
         {
@@ -33,7 +33,7 @@ namespace AvoskaIsReal.Service
                 AppUserRoleManager.ADMIN);
             bool isUserOwner = await _userManager.IsInRoleAsync(user,
                 AppUserRoleManager.OWNER);
-            
+
             // Админ может изменять модераторов и админов
             if (isCurrentUserAdmin && !isUserOwner)
             {

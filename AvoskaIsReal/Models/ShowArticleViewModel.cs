@@ -8,10 +8,12 @@
         public string? TitleImageUrl { get; set; }
         public string? SubTitle { get; set; }
         public string? AuthorsAvatarUrl { get; set; }
-        public string AuthorsName { get; set; }
+
+        // null, если аккаунт автора удален
+        public string? AuthorsName { get; set; }
 
         // В identity id - string
-        public string AuthorsId { get; set; }
+        public string? AuthorsId { get; set; }
         public DateTime Date { get; set; }
         public string Text { get; set; }
     }

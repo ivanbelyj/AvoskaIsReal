@@ -100,7 +100,6 @@ namespace AvoskaIsReal
 
             await HasOwner(configuration, userManager);
 
-            // TODO: убрать после тестов
             await OwnerHasArticle(dataManager, userManager, configuration);
 
 

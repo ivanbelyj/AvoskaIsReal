@@ -1,9 +1,11 @@
-﻿@model ShowArticleViewModel
+﻿@using Microsoft.AspNetCore.Html
+@model ShowArticleViewModel
 @{
     ViewBag.isHeaderGray = true;
 
-    // Todo: Статья должна проверяться на наличие title image
     bool hasTitleImage = Model.TitleImageUrl is not null;
+
+    string avatarUrl = Model.AuthorsAvatarUrl ?? ViewBag.defaultAvatarUrl;
 }
 
 <main class="background_dark page light-color">
@@ -21,14 +23,19 @@
             @Model.Text
         </div>
         <div class="article__info padding-horizontal">
-            <!--Todo: ссылка на аккаунт автора-->
-            <a asp-area="" asp-controller="Users" asp-action="Index" asp-route-id="@Model.AuthorsId">
-                <img class="article__avatar" src="~/images/@Model.AuthorsAvatarUrl" />
+            @{
+                string disabledLink = "pointer-events: none; cursor: default;";
+            }
+            <a asp-area="" asp-controller="Users" asp-action="Index"
+                asp-route-id="@Model.AuthorsId"
+                style="@(Model.AuthorsId is null ? disabledLink : "")">
+                <img class="article__avatar" src="~/images/@avatarUrl" />
             </a>
             <div class="article__author-and-date">
                 <a asp-area="" asp-controller="Users" asp-action="Index"
-                    asp-route-id="@Model.AuthorsId" class="article__author link">
-                    @Model.AuthorsName
+                    asp-route-id="@Model.AuthorsId" class="article__author link"
+                    style="@(Model.AuthorsId is null ? disabledLink : "")">
+                    @(Model.AuthorsName ?? "Удаленный аккаунт")
                 </a>
                 <div class="article__date">@Model.Date</div>
             </div>

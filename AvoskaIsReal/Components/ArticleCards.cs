@@ -22,7 +22,7 @@ namespace AvoskaIsReal.Components
             if (article is null)
                 throw new ArgumentNullException(nameof(article));
 
-            User author = await _userManager.FindByIdAsync(article.UserId);
+            User? author = await _userManager.FindByIdAsync(article.UserId);
 
             ShowArticleViewModel model = new ShowArticleViewModel()
             {
@@ -32,9 +32,9 @@ namespace AvoskaIsReal.Components
                 Date = article.DateAdded,
                 Text = article.Text,
                 TitleImageUrl = article.TitleImageUrl,
-                AuthorsName = author.UserName,
-                AuthorsAvatarUrl = author.AvatarUrl,
-                AuthorsId = author.Id
+                AuthorsName = author?.UserName,
+                AuthorsAvatarUrl = author?.AvatarUrl,
+                AuthorsId = author?.Id
             };
             return View(model);
         }

@@ -1,4 +1,7 @@
 ﻿@model ShowArticleViewModel
+@{
+    string avatarUrl = Model.AuthorsAvatarUrl ?? ViewBag.defaultAvatarUrl;
+}
 <div class="article-cards">
     <article class="article-card background_dark">
         <a class="article-card__default-link" asp-area=""
@@ -13,9 +16,9 @@
         </p>
         <div class="article-card__info">
             <div class="article-card__author">
-                <img class="article-card__avatar" src="~/images/@Model.AuthorsAvatarUrl" />
+                <img class="article-card__avatar" src="~/images/@avatarUrl" />
                 <div class="article-card__name-and-date">
-                    <div class="article-card__author-name">@Model.AuthorsName</div>
+                    <div class="article-card__author-name">@(Model.AuthorsName ?? "Удаленный аккаунт")</div>
                     <div class="article-card__date">@Model.Date</div>
                 </div>
             </div>

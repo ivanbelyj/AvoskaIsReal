@@ -1,7 +1,6 @@
 ﻿@using System.Security.Claims
 @model ShowAccountViewModel
 @{
-    // Todo: ViewBag.defaultAvatarUrl
     string avatarUrl = Model.AvatarUrl ?? ViewBag.defaultAvatarUrl;
 
     if (ViewBag.deleteReturnUrl is null)

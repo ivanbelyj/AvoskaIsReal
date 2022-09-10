@@ -6,11 +6,19 @@
         title = "Создать статью";
     } else
         title = "Редактировать статью";
+
+    //if (ViewBag.returnUrl is null)
+    //{
+    //    ViewBag.returnUrl = "~/Articles/Index";
+    //}
 }
 <main class="background_light page padding-horizontal">
     <h2 class="title_2 brown-dark-color">@title</h2>
     <div asp-validation-summary="All"></div>
-    <form class="form" method="post" name="article-form">
+    
+    <form class="form" method="post" name="article-form" asp-area="moderator"
+        asp-controller="Articles" asp-action="Edit" asp-route-id=""
+        asp-route-returnUrl="@ViewBag.returnUrl">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="UserId" />
         <div class="form__item">
@@ -24,7 +32,6 @@
         <div class="form__item form__padding-bottom">
             <label class="form__label" asp-for=CategoryName>Категория</label>
             <select class="form__select" asp-for="CategoryName">
-                @* Todo: правильное значение категории*@
                 <option value="@Article.CATEGORY_THEORIES">
                     Доказательства и теории
                 </option>
@@ -72,7 +79,8 @@
         <div class="form__item">
             <a class="link" asp-area="moderator"
                 asp-controller="Articles" asp-action="Delete"
-                asp-route-id="@Model.Id">Удалить статью</a>
+                asp-route-id="@Model.Id"
+                asp-route-returnUrl="@ViewBag.returnUrl">Удалить статью</a>
         </div>
     </form>
 </main>

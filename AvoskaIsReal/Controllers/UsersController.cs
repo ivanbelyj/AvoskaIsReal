@@ -69,7 +69,6 @@ namespace AvoskaIsReal.Controllers
             }
             ViewBag.deleteReturnUrl = returnUrl;
 
-            // Todo: фото профиля по умолчанию
             ShowAccountViewModel model = new ShowAccountViewModel()
             {
                 Id = user.Id,

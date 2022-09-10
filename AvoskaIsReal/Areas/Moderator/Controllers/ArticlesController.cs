@@ -24,11 +24,18 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
 
         public IActionResult Index()
         {
-            // Todo: выдавать только те статьи, которые создал пользователь
-            return View(_dataManager.Articles.GetArticles().ToList());
+            Claim? idClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (idClaim is null)
+                return Unauthorized();
+
+            string usersId = idClaim.Value;
+            ViewBag.returnUrl = "~/moderator/Articles/Index";
+            return View("ArticlesList", _dataManager.Articles.GetArticles().ToList()
+                .Where(article => article.UserId == usersId));
         }
 
-        public IActionResult Edit(Guid id)
+        [HttpGet]
+        public IActionResult Edit(Guid id, string returnUrl)
         {
             Article? article = null;
             if (id != default(Guid))
@@ -46,23 +53,30 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
                 ViewBag.creatingNewArticle = true;
                 article = new Article() { UserId = claim.Value, Text = "" };
             }
+
+            ViewBag.returnUrl = returnUrl;
             return View(article);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Article article)
+        public async Task<IActionResult> Edit(Article article, string returnUrl)
         {
             if (article is null)
                 return BadRequest();
 
             if (ModelState.IsValid)
             {
-                // Todo: политику авторизации можно переименовать
                 if (await IsAllowedToEditOrDeleteAsync(article))
                 {
                     _dataManager.Articles.SaveArticle(article);
-                    return RedirectToAction(nameof(ArticlesController.Index),
-                        nameof(ArticlesController).CutController());
+
+                    // Todo: image service, сохранение изображения статьи
+
+                    if (returnUrl is not null)
+                        return Redirect(returnUrl);
+                    else
+                        return RedirectToAction(nameof(ArticlesController.Index),
+                            nameof(ArticlesController).CutController());
                 }
                 else
                     return Unauthorized();
@@ -83,7 +97,7 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
                    "EditOrDeleteUserPolicy")).Succeeded;
         }
 
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id, string? returnUrl)
         {
             if (id == default(Guid))
                 return BadRequest();
@@ -95,8 +109,12 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
             if (await IsAllowedToEditOrDeleteAsync(article))
             {
                 _dataManager.Articles.DeleteArticle(id);
-                return RedirectToAction(nameof(ArticlesController.Index),
-                    nameof(ArticlesController).CutController());
+
+                if (returnUrl is not null)
+                    return Redirect(returnUrl);
+                else
+                    return RedirectToAction(nameof(ArticlesController.Index),
+                        nameof(ArticlesController).CutController());
             }
             else
             {

@@ -1,4 +1,10 @@
 ﻿@model IEnumerable<Article>
+@{
+    if (ViewBag.returnUrl is null)
+        ViewBag.returnUrl = "~/Articles/Index";
+    string returnUrl = ViewBag.returnUrl;
+}
+@* Данное представление используется в областях admin и moderator *@
 <main class="background_light page padding-horizontal users-control-page">
     <h2 class="title_2 brown-dark-color">Статьи</h2>
     <ul class="links-list entities-list">
@@ -12,7 +18,8 @@
                 </a>|
                 <a class="link"
                     asp-area="moderator" asp-controller="Articles" asp-action="Edit"
-                    asp-route-id="@article.Id">редакт.</a>|
+                    asp-route-id="@article.Id"
+                    asp-route-returnUrl="@returnUrl">редакт.</a>|
                 <a class="link text_dangerous"
                     asp-area="moderator" asp-controller="Articles" asp-action="Delete"
                     asp-route-id="@article.Id">удалить</a>
@@ -20,5 +27,6 @@
         }
     </ul>
     <a asp-area="moderator" asp-controller="Articles" asp-action="Edit"
+        asp-route-returnUrl="@returnUrl"
         class="link link_last">Создать статью</a>
 </main>

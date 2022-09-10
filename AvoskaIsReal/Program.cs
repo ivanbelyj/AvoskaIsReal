@@ -18,6 +18,7 @@ builder.Services.AddTransient<DataManager>();
 builder.Services.AddTransient<AppUserRoleManager>();
 builder.Services.AddScoped<IAuthorizationHandler, EditOrDeleteAuthorizationHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, ChangeRoleAuthorizationHandler>();
+builder.Services.AddTransient<ImageService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

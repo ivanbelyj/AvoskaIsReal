@@ -17,12 +17,10 @@ namespace AvoskaIsReal.Controllers
             _userManager = userManager;
         }
 
-        // Todo: meta tags статьи
         public async Task<IActionResult> Index(Guid id)
         {
             if (id == default(Guid))
             {
-                // Todo: Выбрать статьи из категории "теории и доказательства"
                 return View(_dataManager.Articles.GetArticles()
                     .Where(article => article.CategoryName == Article.CATEGORY_THEORIES)
                     .ToList());
@@ -31,7 +29,7 @@ namespace AvoskaIsReal.Controllers
             Article? article = _dataManager.Articles.GetArticleById(id);
             if (article is not null)
             {
-                User author = await _userManager.FindByIdAsync(article.UserId);
+                User? author = await _userManager.FindByIdAsync(article.UserId);
                 // Todo: что, если аккаунт удален?
 
                 ShowArticleViewModel model = new ShowArticleViewModel()
@@ -42,9 +40,9 @@ namespace AvoskaIsReal.Controllers
                     SubTitle = article.SubTitle,
                     Text = article.Text,
                     TitleImageUrl = article.TitleImageUrl,
-                    AuthorsName = author.UserName,
-                    AuthorsAvatarUrl = author.AvatarUrl,
-                    AuthorsId = author.Id
+                    AuthorsName = author?.UserName,
+                    AuthorsAvatarUrl = author?.AvatarUrl,
+                    AuthorsId = author?.Id
                 };
 
                 // Метатеги
