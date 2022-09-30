@@ -101,8 +101,6 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
                    "EditOrDeleteUserPolicy")).Succeeded;
         }
 
-        // Todo: после удаления статьи, находясь до этого в AllArticles,
-        // возврат происходит в "Ваши статьи"
         public async Task<IActionResult> Delete(Guid id, string? returnUrl)
         {
             if (id == default(Guid))

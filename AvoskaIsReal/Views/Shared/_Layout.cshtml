@@ -5,6 +5,12 @@
     @{
         await Html.RenderPartialAsync("_MetatagsPartial");
     }
+    @* Базовые скрипты могут быть использованы в коде,
+        сгенерированном в RenderBody()
+    *@
+    @{
+        await Html.RenderPartialAsync("_ScriptsPartial");
+    }  
 </head>
 <body class="body">
     @if (IsSectionDefined("Header"))
@@ -36,8 +42,6 @@
     @{
         await Html.RenderPartialAsync("_FooterPartial");
     }
-    @{
-        await Html.RenderPartialAsync("_ScriptsPartial");
-    }
+  
 </body>
 </html>

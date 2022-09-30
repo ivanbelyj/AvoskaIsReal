@@ -12,6 +12,13 @@
     //    ViewBag.returnUrl = "~/Articles/Index";
     //}
 }
+
+<script src="~/tinymce/public/jquery/jquery.min.js"></script>
+<script src="~/tinymce/public/tinymce/tinymce.min.js"  referrerpolicy="origin"></script>
+<script src="~/tinymce/public/tinymce-jquery/tinymce-jquery.min.js"></script>
+
+<script src="~/js/configure-editor.js"></script>
+
 <main class="background_light page padding-horizontal">
     <h2 class="title_2 brown-dark-color">@title</h2>
     <div asp-validation-summary="All"></div>
@@ -39,8 +46,7 @@
             </select>
         </div>
         <div class="form__item form__ck-editor form__padding-bottom">
-            <!--Todo: CK editor и привязка свойства Text-->
-            <textarea asp-for="Text"></textarea>
+            <textarea id="editor" asp-for="Text"></textarea>
         </div>
         <div class="form__item">
             <label class="form__label" asp-for="MetaKeywords">

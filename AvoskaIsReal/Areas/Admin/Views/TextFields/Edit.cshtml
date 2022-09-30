@@ -2,6 +2,13 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model TextField
 
+@*Todo: в _Layout уже добавлен JQuery, правда, может быть, другой*@
+<script src="~/tinymce/public/jquery/jquery.min.js"></script>
+<script src="~/tinymce/public/tinymce/tinymce.min.js"  referrerpolicy="origin"></script>
+<script src="~/tinymce/public/tinymce-jquery/tinymce-jquery.min.js"></script>
+
+<script src="~/js/configure-editor.js"></script>
+
 <main class="background_light page padding-horizontal">
     <h2 class="title_2 brown-dark-color">Редактировать - @Model.Title</h2>
     <form class="form" method="post" name="article-form">
@@ -17,8 +24,11 @@
             <label class="form__label" asp-for="Text">
                 Содержание страницы
             </label>
-            <!--Todo: CK editor-->
-            <textarea class="form__ck-editor" asp-for="Text"></textarea>
+            <!--Здесь планировался ck-editor, но возникли сложности с сохранением
+                атрибутов тегов после редактирования (конфигурация из документации,
+                по видимому, не работает)
+            -->
+            <textarea class="form__ck-editor" asp-for="Text" id="editor"></textarea>
         </div>
         <div class="form__item">
             <label class="form__label" asp-for="MetaKeywords">

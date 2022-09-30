@@ -7,6 +7,7 @@ using AvoskaIsReal;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using AvoskaIsReal.Service;
 using Microsoft.AspNetCore.Authorization;
+using AvoskaIsReal.Service.Images;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddTransient<AppUserRoleManager>();
 builder.Services.AddScoped<IAuthorizationHandler, EditOrDeleteAuthorizationHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, ChangeRoleAuthorizationHandler>();
 builder.Services.AddTransient<ImageService>();
+builder.Services.AddTransient<IImageProfile, ContentImageProfile>();
+builder.Services.AddTransient<IImageProfile, AvatarProfile>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>

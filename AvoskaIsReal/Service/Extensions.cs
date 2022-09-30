@@ -6,5 +6,8 @@
         {
             return str.Replace("Controller", "");
         }
+
+        public static string PathToUrl(this string path)
+            => path.Replace('\\', '/');
     }
 }
