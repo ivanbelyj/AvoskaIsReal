@@ -21,6 +21,8 @@ namespace AvoskaIsReal.Controllers
         {
             if (id == default(Guid))
             {
+                ViewBag.TextField = _dataManager.TextFields
+                    .GetTextFieldByCodeWord("TheoriesAndEvidences");
                 return View(_dataManager.Articles.GetArticles()
                     .Where(article => article.CategoryName == Article.CATEGORY_THEORIES)
                     .ToList());
@@ -59,8 +61,10 @@ namespace AvoskaIsReal.Controllers
         public IActionResult AllAboutAvoska()
         {
             // Выбрать статьи из категории "все об авоська" и передать
-            ViewBag.textField = _dataManager.TextFields
-                .GetTextFieldByCodeWord("AllAboutAvoska");
+            //ViewBag.textField = _dataManager.TextFields
+            //    .GetTextFieldByCodeWord("AllAboutAvoska");
+            ViewBag.TextField = _dataManager.TextFields
+                    .GetTextFieldByCodeWord("AllAboutAvoska");
             return View(_dataManager.Articles.GetArticles()
                 .Where(article => article.CategoryName == Article.CATEGORY_ABOUT_AVOSKA)
                 .ToList());

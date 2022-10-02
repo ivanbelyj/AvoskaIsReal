@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using AvoskaIsReal.Service;
 using Microsoft.AspNetCore.Authorization;
 using AvoskaIsReal.Service.Images;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 var builder = WebApplication.CreateBuilder(args);
 

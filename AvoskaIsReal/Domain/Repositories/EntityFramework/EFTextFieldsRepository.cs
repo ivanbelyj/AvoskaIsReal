@@ -13,8 +13,10 @@ namespace AvoskaIsReal.Domain.Repositories.EntityFramework
 
         public TextField? GetTextFieldByCodeWord(string codeWord)
         {
-            return _appDbContext.TextFields
+            var list = _appDbContext.TextFields.ToArray();
+            var res = _appDbContext.TextFields
                 .FirstOrDefault(item => item.CodeWord == codeWord);
+            return res;
         }
 
         public TextField? GetTextFieldById(Guid id)

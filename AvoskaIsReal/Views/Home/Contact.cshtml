@@ -1,8 +1,12 @@
 ﻿@model TextField
+@{
+    ViewBag.MetaTitle = Model.Title;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    ViewBag.MetaDescription = Model.MetaDescription;
+}
 
 <main class="page contact-page background_dark padding-horizontal">
     <div>@Html.Raw(Model.Text)</div>
-    
 </main>
 
 @section Header {

@@ -10,7 +10,7 @@ namespace AvoskaIsReal
 <div class=""main-page__text-block"">
     <h2 class=""title_2 gray-color"">Кто это?</h2>
     <p class=""main-page__p"">
-        Авоська - ужасное и загадочное существо, живущее в Гавнистане.Она
+        Авоська - ужасное и загадочное существо.Она
         вселяет страх и уважение жителей страны, она - самое омерзительное,
         что только есть на свете.
     </p>
@@ -67,27 +67,16 @@ namespace AvoskaIsReal
     </ul>
 </div>";
         private const string defaultAllAboutAvoskaText = @"
-Авоська - реальное существо, живущее в Хавнистане.
+Авоська - реальное существо.
 Вес: ~600 кг +- 70 кг.Пол: предположительно женский.
-Раса: смесь медведя, разумной хавнистанской кисы и других.
 Дата рождения: 2000 г.
-Диагноз: параноидальная шизофрения, копрофилия,
-параноидальный мазахизм (отсюда и копрофилия) и множество других
-психических заболеваний.Родилась в семье сбежавших из дома 6 и 7
-летних Юноны и Вельсура.Малый возраст родителей -
-одна из причин отклонений.
+Диагнозы: параноидальная шизофрения, ...
 Обычно Авоська пребывает на мусорках, канализациях,
 общественных туалетах.
-Пьёт, курит, частенько ворует. Ходит нагой, либо в одежде из рваных
+Пьёт, курит, частенько ворует. Ходит в одежде из рваных
 мешков. Никто точно не знает, кто назвал её Авоськой и почему, что
-творилось и творится в её жизни.В одно время встречалась с 49 -
-летним хавнистанцем Хунгрыжей (который одновременно
-встречался и с её сёстрами и матерью). Имеет в своем распоряжении
-странное существо, называемое говнёнцем, которое способно
-перевозить Авоську и изменять свой размер.Представляет угрозу
-не только для прохожих и исследователей, но и для всего Хавнистана.
-Из большой хавнистанской энциклопедии.
-Издательство Загадки Хавнистана. 2019г.";
+творилось и творится в её жизни. Представляет угрозу
+не только для прохожих и исследователей, но и для всей страны.";
 
         public static async Task InitializeAsync(UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager, DataManager dataManager,
@@ -108,15 +97,23 @@ namespace AvoskaIsReal
             {
                 new TextField() {
                     CodeWord = "Index", Text = defaultIndexText,
-                    Title = "Все об Авоське"
+                    Title = "Все об Авоське",
+                    MetaDescription = "MetaDescriptionTest", MetaKeywords = "MetaKeywordsTest"
                 },
                 new TextField() {
                     CodeWord = "Contact", Text = defaultContactText,
-                    Title = "Связаться с нами"
+                    Title = "Связаться с нами",
+                    MetaDescription = "MetaDescriptionTest", MetaKeywords = "MetaKeywordsTest"
                 },
                 new TextField() {
                     CodeWord = "AllAboutAvoska", Text = defaultAllAboutAvoskaText,
-                    Title = "Все об Авоське"
+                    Title = "Все об Авоське",
+                    MetaDescription = "MetaDescriptionTest", MetaKeywords = "MetaKeywordsTest"
+                },
+                new TextField() {
+                    CodeWord = "TheoriesAndEvidences", Text = "",
+                    Title = "Теории и доказательства",
+                    MetaDescription = "MetaDescriptionTest", MetaKeywords = "MetaKeywordsTest"
                 },
             };
             foreach (TextField textField in textFields)

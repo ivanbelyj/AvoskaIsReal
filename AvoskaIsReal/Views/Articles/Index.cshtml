@@ -1,9 +1,18 @@
 ﻿@model IEnumerable<Article>
+@{
+    ViewBag.MetaTitle = ViewBag.TextField?.Title;
+    ViewBag.MetaKeywords = ViewBag.TextField?.MetaKeywords;
+    ViewBag.MetaDescription = ViewBag.TextField?.MetaDescription;
+}
 <main class="background_light page">
     <h2 class="title_2 brown-dark-color padding-horizontal">
         Теории и доказательства
     </h2>
-    <!--Todo: возможность добавить текст и мета теги на странице-->
+    <div class="limited-text padding-horizontal">
+        <p class="limited-text__content brown-dark-color">
+            @Html.Raw(ViewBag.TextField?.Text)
+        </p>
+    </div>
     
     @foreach (Article article in Model)
     {
