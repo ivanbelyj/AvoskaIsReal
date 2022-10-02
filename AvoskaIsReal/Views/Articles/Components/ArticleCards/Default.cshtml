@@ -19,7 +19,7 @@
                 <img class="article-card__avatar" src="@avatarUrl" />
                 <div class="article-card__name-and-date">
                     <div class="article-card__author-name">@(Model.AuthorsName ?? "Удаленный аккаунт")</div>
-                    <div class="article-card__date">@Model.Date</div>
+                    <div class="article-card__date">@Model.Date.ToLocalTime()</div>
                 </div>
             </div>
         </div>

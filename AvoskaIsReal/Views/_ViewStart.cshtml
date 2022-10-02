@@ -6,14 +6,14 @@
 
     // Для представлений, в которых моделью выступают TextField и Article,
     // вынесена общая логика
-    // Todo: возможно, такое вынесение - не лучший вариант из-за
+    // Возможно, такое вынесение - не лучший вариант из-за
     // неочевидности мастер-страницы в контроллерах и представлениях.
     // С другой стороны, не придется менять в разных местах нестрого типизированные
     // свойства
-    if (Model is TextField || Model is Article)
-    {
-        ViewBag.MetaTitle = Model.Title;
-        ViewBag.MetaKeywords = Model.MetaKeywords;
-        ViewBag.MetaDescription = Model.MetaDescription;
-    }
+    //if (Model is TextField || Model is Article)
+    //{
+    //    ViewBag.MetaTitle = Model.Title;
+    //    ViewBag.MetaKeywords = Model.MetaKeywords;
+    //    ViewBag.MetaDescription = Model.MetaDescription;
+    //}
 }

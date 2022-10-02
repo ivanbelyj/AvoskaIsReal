@@ -37,7 +37,7 @@
                     style="@(Model.AuthorsId is null ? disabledLink : "")">
                     @(Model.AuthorsName ?? "Удаленный аккаунт")
                 </a>
-                <div class="article__date">@Model.Date</div>
+                <div class="article__date">@Model.Date.ToLocalTime()</div>
             </div>
         </div>
     </article>

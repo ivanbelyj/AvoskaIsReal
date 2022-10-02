@@ -7,5 +7,6 @@
         // int MinHeight { get; }
         // int MinWidth { get; }
         int MaxSizeBytes { get; }
+        bool CropToSquare { get; }
     }
 }

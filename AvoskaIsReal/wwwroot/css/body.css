@@ -1,11 +1,29 @@
-@font-face {
+/*@font-face {
     font-family: "LC Body";
-    src: url("/fonts/LC\ Body.ttf");
+    src: url("/fonts/LC_Body.ttf");
 }
 
 @font-face {
     font-family: "Sehnsucht Font";
-    src: url("Sehnsucht Font");
+    src: url("/fonts/Sehnsucht_Font.ttf");
+}*/
+
+@font-face {
+    font-family: 'LC Body';
+    src: url('/fonts/LC-Body.eot');
+    src: url('/fonts/LC-Body.eot?#iefix') format('embedded-opentype'), url('/fonts/LC-Body.woff2') format('woff2'), url('/fonts/LC-Body.woff') format('woff'), url('/fonts/LC-Body.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sehnsucht Font';
+    src: url('/fonts/SehnsuchtFont.eot');
+    src: url('/fonts/SehnsuchtFont.eot?#iefix') format('embedded-opentype'), url('/fonts/SehnsuchtFont.woff2') format('woff2'), url('/fonts/SehnsuchtFont.woff') format('woff'), url('/fonts/SehnsuchtFont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
@@ -37,6 +55,15 @@ ol {
     margin: 0;
     padding: 0;
 }
+
+:root {
+    overflow-x: hidden;
+}
+
+    :root img {
+        max-width: 100%;
+        object-fit: contain;
+    }
 
 .gray-color {
     color: var(--gray);

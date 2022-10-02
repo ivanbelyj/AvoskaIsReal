@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'LC Body';
+    src: url('LC-Body.eot');
+    src: url('LC-Body.eot?#iefix') format('embedded-opentype'),
+        url('LC-Body.woff2') format('woff2'),
+        url('LC-Body.woff') format('woff'),
+        url('LC-Body.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Sehnsucht Font';
+    src: url('SehnsuchtFont.eot');
+    src: url('SehnsuchtFont.eot?#iefix') format('embedded-opentype'),
+        url('SehnsuchtFont.woff2') format('woff2'),
+        url('SehnsuchtFont.woff') format('woff'),
+        url('SehnsuchtFont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

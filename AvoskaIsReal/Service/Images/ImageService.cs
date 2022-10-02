@@ -47,17 +47,32 @@ namespace AvoskaIsReal.Service.Images
             } while (File.Exists(filePath));
 
             // Resize(image, imageProfile);
-            // Crop(image, imageProfile);
+            if (imageProfile.CropToSquare)
+                CropToSquare(image);
 
             image.Save(filePath, new JpegEncoder() { Quality = 75 });
             return "/" + Path.Combine(imageProfile.Folder, fileName).PathToUrl();
         }
 
-        //private void Crop(Image image, IImageProfile imageProfile)
-        //{
-        //    var rectangle = GetCropRectangle(image, imageProfile);
-        //    image.Mutate(action => action.Crop(rectangle));
-        //}
+        private void CropToSquare(Image image)
+        {
+            var rectangle = GetCropRectangle(image);
+            image.Mutate(action => action.Crop(rectangle));
+        }
+
+        private Rectangle GetCropRectangle(IImageInfo image)
+        {
+            if (image.Width > image.Height)
+            {
+                return new Rectangle((image.Width - image.Height) / 2, 0,
+                    image.Height, image.Height);
+            }
+            else
+            {
+                return new Rectangle(0, (image.Height - image.Width) / 2,
+                    image.Width, image.Width);
+            }
+        }
 
         //private void Resize(Image image, IImageProfile imageProfile)
         //{
@@ -69,15 +84,7 @@ namespace AvoskaIsReal.Service.Images
 
         //    image.Mutate(action => action.Resize(resizeOptions));
         //}
-        //private Rectangle GetCropRectangle(IImageInfo image, IImageProfile imageProfile)
-        //{
-        //    int widthDifference = image.Width - imageProfile.MinWidth;
-        //    int heightDifference = image.Height - imageProfile.MinHeight;
-        //    int x = widthDifference / 2;
-        //    int y = heightDifference / 2;
 
-        //    return new Rectangle(x, y, imageProfile.MinWidth, imageProfile.MinHeight);
-        //}
 
         private void ValidateExtenstion(IFormFile file)
         {

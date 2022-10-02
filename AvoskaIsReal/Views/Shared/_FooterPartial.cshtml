@@ -1,7 +1,7 @@
 ﻿@using System.Security.Claims
 @{
     string years = "2022";
-    if (DateTime.Now.Year != 2022)
+    if (DateTime.Now.Year > 2022)
     {
         years += " - " + DateTime.Now.Year;
     }

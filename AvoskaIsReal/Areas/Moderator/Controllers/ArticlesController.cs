@@ -92,6 +92,7 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
                     return Unauthorized();
             }
 
+            ViewBag.returnUrl = returnUrl;
             return View(article);
         }
 

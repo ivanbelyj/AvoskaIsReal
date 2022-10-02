@@ -3,7 +3,8 @@
     "outputFileName": "wwwroot/js/scripts.js",
     "inputFiles": [
       "wwwroot/js/blocks/limited-text.js",
-      "wwwroot/js/blocks/nav-panel.js"
+      "wwwroot/js/blocks/nav-panel.js",
+      "wwwroot/js/blocks/footer.js"
     ]
   },
   {

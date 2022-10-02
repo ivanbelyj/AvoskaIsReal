@@ -13,7 +13,7 @@
     //}
 }
 
-<script src="~/tinymce/public/jquery/jquery.min.js"></script>
+<!--script src="~/tinymce/public/jquery/jquery.min.js"></script-->
 <script src="~/tinymce/public/tinymce/tinymce.min.js"  referrerpolicy="origin"></script>
 <script src="~/tinymce/public/tinymce-jquery/tinymce-jquery.min.js"></script>
 
@@ -80,8 +80,6 @@
             <button class="button form__submit" type="submit">Сохранить</button>
         </div>
 
-        @* Todo: Показывать, только если имеет ли пользователь право
-        удалять статью *@
         <div class="form__item">
             <a class="link" asp-area="moderator"
                 asp-controller="Articles" asp-action="Delete"

@@ -11,5 +11,7 @@
         // public int MinWidth => 1024;
 
         public int MaxSizeBytes => 10 * MB;
+
+        public bool CropToSquare => false;
     }
 }

@@ -28,6 +28,12 @@ namespace AvoskaIsReal.Controllers
         {
             if (file.Length == 0)
                 return BadRequest();
+
+            if (User.Identity is null || !(User.Identity.IsAuthenticated))
+            {
+                return Unauthorized();
+            }
+
             try
             {
                 string fileUrl = _imageService.SaveImage(file, type);
