@@ -397,5 +397,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-wwwroot/uploaded-avatars
-wwwroot/uploaded-images
+AvoskaIsReal/wwwroot/uploaded-avatars
+AvoskaIsReal/wwwroot/uploaded-images
