@@ -6,12 +6,10 @@
     </h2>
     <div class="limited-text padding-horizontal">
         <p class="limited-text__content brown-dark-color">
-            @* Todo: передать во ViewBag TextField*@
             @Html.Raw(ViewBag.TextField.Text)
         </p>
     </div>
 
-    @* Todo: статьи из категории все об Авоське *@
     @foreach (Article article in Model)
     {
         @await Component.InvokeAsync("ArticleCards", new { article = article });

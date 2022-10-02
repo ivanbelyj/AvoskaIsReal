@@ -150,7 +150,7 @@ namespace AvoskaIsReal
                 + "очевидцев, Авоська лазила на мусорке и искала еду.",
                 // User = author,
                 UserId = author.Id,
-                TitleImageUrl = "nature.jpg"
+                // TitleImageUrl = "nature.jpg"
             };
             dataManager.Articles.SaveArticle(article);
         }

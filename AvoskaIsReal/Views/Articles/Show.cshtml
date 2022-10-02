@@ -14,8 +14,8 @@
         @if (hasTitleImage)
         {
             <div class="article__title-image blur-back-image padding-horizontal"
-                style="background-image:url('/images/@Model.TitleImageUrl')">
-                <img class="blur-back-image__image" src="~/images/@Model.TitleImageUrl" />
+                style="background-image:url('@Model.TitleImageUrl')">
+                <img class="blur-back-image__image" src="@Model.TitleImageUrl" />
             </div>
         }
 
@@ -29,7 +29,7 @@
             <a asp-area="" asp-controller="Users" asp-action="Index"
                 asp-route-id="@Model.AuthorsId"
                 style="@(Model.AuthorsId is null ? disabledLink : "")">
-                <img class="article__avatar" src="~/images/@avatarUrl" />
+                <img class="article__avatar" src="@avatarUrl" />
             </a>
             <div class="article__author-and-date">
                 <a asp-area="" asp-controller="Users" asp-action="Index"

@@ -5,7 +5,6 @@
     </h2>
     <!--Todo: возможность добавить текст и мета теги на странице-->
     
-    @* Todo: статьи из категории Теории и доказательства *@
     @foreach (Article article in Model)
     {
         @await Component.InvokeAsync("ArticleCards", new { article = article });

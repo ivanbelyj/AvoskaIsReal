@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using AvoskaIsReal.Domain;
 using Microsoft.AspNetCore.Authorization;
 using AvoskaIsReal.Service;
+using AvoskaIsReal.Service.Images;
 
 namespace AvoskaIsReal.Controllers
 {
@@ -17,18 +18,21 @@ namespace AvoskaIsReal.Controllers
         private AppUserRoleManager _appRoleManager;
         private IWebHostEnvironment _webHostEnvironment;
         private IAuthorizationService _authorizationService;
+        private ImageService _imageService;
 
         // Требуется в случае удаления пользователя (перед удалением нужно выйти)
         private SignInManager<User> _signInManager;
         public UsersController(UserManager<User> userManager,
             IWebHostEnvironment environment, SignInManager<User> signInManager,
-            AppUserRoleManager appRoleManager, IAuthorizationService authorizationService)
+            AppUserRoleManager appRoleManager, IAuthorizationService authorizationService,
+            ImageService imageService)
         {
             _userManager = userManager;
             _webHostEnvironment = environment;
             _signInManager = signInManager;
             _appRoleManager = appRoleManager;
             _authorizationService = authorizationService;
+            _imageService = imageService;
         }
 
         // Профиль пользователя
@@ -148,7 +152,7 @@ namespace AvoskaIsReal.Controllers
         // тем не менее, не может, т.к. эта авторизация - resource-based.
         // Если выйти из аккаунта, а потом снова войти, старые cookies отзываются.
         [HttpPost]
-        public async Task<IActionResult> Edit(EditUserViewModel model, IFormFile avatarFile,
+        public async Task<IActionResult> Edit(EditUserViewModel model, IFormFile? avatarFile,
             string? deleteReturnUrl = null)
         {
             User user = await _userManager.FindByIdAsync(model.Id);
@@ -166,31 +170,22 @@ namespace AvoskaIsReal.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    // user.Id = model.Id;
                     user.About = model.About;
                     user.Career = model.Career;
                     user.Contacts = model.Contacts;
                     user.Email = model.Email;
                     user.UserName = model.Login;
-                    user.AvatarUrl = avatarFile.FileName;
+                    // user.AvatarUrl = avatarFile?.FileName ?? user.AvatarUrl;
+
+                    if (avatarFile is not null)
+                    {
+                        user.AvatarUrl = _imageService.SaveImage(avatarFile,
+                            ImageType.Avatar);
+                    }
 
                     IdentityResult res = await _userManager.UpdateAsync(user);
                     if (res.Succeeded)
                     {
-                        // Если пользователь успешно обновлен и у него установлен
-                        // новый аватар, его нужно сохранить
-                        if (avatarFile is not null)
-                        {
-                            string path = Path.Combine(_webHostEnvironment.WebRootPath,
-                                "images", avatarFile.FileName);
-
-                            // Todo: Обработать ситуацию с одинаковыми именами в папке
-                            using (FileStream stream = new FileStream(path, FileMode.Create))
-                            {
-                                await avatarFile.CopyToAsync(stream);
-                            }
-                        }
-
                         // Установка роли
                         IdentityResult setRoleRes = await _appRoleManager
                             .SetRoleAsync(user, model.Role);

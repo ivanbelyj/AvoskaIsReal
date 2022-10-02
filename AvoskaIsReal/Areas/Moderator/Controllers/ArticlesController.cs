@@ -1,6 +1,7 @@
 ﻿using AvoskaIsReal.Domain;
 using AvoskaIsReal.Domain.Entities;
 using AvoskaIsReal.Service;
+using AvoskaIsReal.Service.Images;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,16 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
         private DataManager _dataManager;
         private IAuthorizationService _authorizationService;
         private UserManager<User> _userManager;
+        private ImageService _imageService;
+
         public ArticlesController(DataManager dataManager,
-            IAuthorizationService authorizationService, UserManager<User> userManager)
+            IAuthorizationService authorizationService, UserManager<User> userManager,
+            ImageService imageService)
         {
             _dataManager = dataManager;
             _authorizationService = authorizationService;
             _userManager = userManager;
+            _imageService = imageService;
         }
 
         public IActionResult Index()
@@ -59,7 +64,8 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Article article, string returnUrl)
+        public async Task<IActionResult> Edit(Article article, IFormFile? titleImage,
+            string returnUrl)
         {
             if (article is null)
                 return BadRequest();
@@ -68,9 +74,13 @@ namespace AvoskaIsReal.Areas.Moderator.Controllers
             {
                 if (await IsAllowedToEditOrDeleteAsync(article))
                 {
-                    _dataManager.Articles.SaveArticle(article);
+                    if (titleImage is not null)
+                    {
+                        article.TitleImageUrl = _imageService
+                            .SaveImage(titleImage, ImageType.ContentImage);
+                    }
 
-                    // Todo: image service, сохранение изображения статьи
+                    _dataManager.Articles.SaveArticle(article);
 
                     if (returnUrl is not null)
                         return Redirect(returnUrl);

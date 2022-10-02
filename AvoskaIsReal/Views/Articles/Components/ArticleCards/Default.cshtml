@@ -9,14 +9,14 @@
         <h3 class="article-card__title">@Model.Title</h3>
         @if (Model.TitleImageUrl is not null)
         {
-            <img class="article-card__image" src="~/images/@Model.TitleImageUrl" />
+            <img class="article-card__image" src="@Model.TitleImageUrl" />
         }
         <p class="article-card__text">
             @Model.SubTitle
         </p>
         <div class="article-card__info">
             <div class="article-card__author">
-                <img class="article-card__avatar" src="~/images/@avatarUrl" />
+                <img class="article-card__avatar" src="@avatarUrl" />
                 <div class="article-card__name-and-date">
                     <div class="article-card__author-name">@(Model.AuthorsName ?? "Удаленный аккаунт")</div>
                     <div class="article-card__date">@Model.Date</div>

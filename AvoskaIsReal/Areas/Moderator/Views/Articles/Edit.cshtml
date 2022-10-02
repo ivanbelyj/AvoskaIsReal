@@ -25,7 +25,7 @@
     
     <form class="form" method="post" name="article-form" asp-area="moderator"
         asp-controller="Articles" asp-action="Edit" asp-route-id=""
-        asp-route-returnUrl="@ViewBag.returnUrl">
+        asp-route-returnUrl="@ViewBag.returnUrl" enctype="multipart/form-data">
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="UserId" />
         <div class="form__item">
@@ -62,18 +62,18 @@
             </label>
             <textarea asp-for="MetaDescription"></textarea>
         </div>
-        <!--Todo: Изменение изображения статьи-->
+        
         <div class="form__item">
             <label class="form__label">Изображение статьи</label>
             <label class="inline-button inline-button_brown form__upload-button form__label"
                    for="title-image-upload">Выбрать файл</label>
-            <input id="title-image-upload" type="file" />
+            <input id="title-image-upload" type="file" name="titleImage" />
         </div>
         @if (Model.TitleImageUrl is not null)
         {
             <div class="form__item form__padding-bottom">
                 <label class="form__label">Текущее изображение статьи</label>
-                <img class="form__current-user-image" src="~/images/@Model.TitleImageUrl" />
+                <img class="form__current-user-image" src="@Model.TitleImageUrl" />
             </div>
         }
         <div class="form__item">

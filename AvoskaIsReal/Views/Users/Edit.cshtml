@@ -40,8 +40,6 @@
         <div class="form__item">
             <label asp-for="Role" class="form__label">Роль</label>
             <select asp-for="Role" class="form__select" name="role">
-                @* Todo: если пользователь не авторизован, некоторые роли не должны
-                    отображаться в списке *@
                 @* Отображаются только те роли, на установку которых авторизован
                     пользователь *@
                 @foreach (string role in new [] { "moderator", "admin", "owner" })
@@ -60,7 +58,6 @@
                             @roleStr
                         </option>
                     }
-                    
                 }
             </select>
         </div>
@@ -78,7 +75,6 @@
             <textarea asp-for="Contacts"></textarea>
         </div>
 
-        @*Todo: если фото не выбрано, то остается прежний аватар*@
         <div class="form__item">
             <label asp-for="AvatarUrl" class="form__label">Фото профиля</label>
             <label class="inline-button inline-button_brown form__upload-button form__label"
@@ -88,7 +84,7 @@
         @if (Model.AvatarUrl is not null) {
             <div class="form__item form__padding-bottom">
                 <label class="form__label">Текущее фото профиля</label>
-                <img class="form__current-user-image" src="~/images/@Model.AvatarUrl" />
+                <img class="form__current-user-image" src="@Model.AvatarUrl" />
             </div>
         }
         <div class="form__item">
